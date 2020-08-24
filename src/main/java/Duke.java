@@ -12,15 +12,15 @@ public class Duke {
         System.out.println(HORIZONTAL_LINE);
 
         ArrayList<Task> taskList = new ArrayList<>();
-        Scanner sc = new Scanner(System.in);
-        int taskLeft = 0;
+        Scanner scanner = new Scanner(System.in);
+        int pendingTaskCount = 0;
         while (true) {
             System.out.print(System.lineSeparator() + ">> ");
-            String input = sc.nextLine();
+            String userInput = scanner.nextLine();
             System.out.println(HORIZONTAL_LINE);
 
-            String[] cmdArgs = input.split(" ");
-            switch (cmdArgs[0]) {
+            String[] inputArguments = userInput.split(" ");
+            switch (inputArguments[0]) {
             case "bye":
                 System.out.println(" Bye-bye. Hope to see you again soon!");
                 System.out.println(HORIZONTAL_LINE);
@@ -33,28 +33,28 @@ public class Duke {
                 }
                 break;
             case "done":
-                int index = Integer.parseInt(cmdArgs[1]) - 1;
-                if (index >= taskList.size() || index <= -1) {
-                    System.out.println("Uhh... There's no task numbered: " + index);
+                int doneTaskIndex = Integer.parseInt(inputArguments[1]) - 1;
+                if (doneTaskIndex >= taskList.size() || doneTaskIndex <= -1) {
+                    System.out.println("Uhh... There's no task numbered: " + doneTaskIndex);
                     break;
-                } else if (taskList.get(index).getStatus()) {
+                } else if (taskList.get(doneTaskIndex).getStatus()) {
                     System.out.println(" Remember? You have completed this task already.");
                 } else {
-                    taskLeft--;
-                    taskList.get(index).markAsDone();
-                    if (taskLeft == 0) {
+                    pendingTaskCount--;
+                    taskList.get(doneTaskIndex).markAsDone();
+                    if (pendingTaskCount == 0) {
                         System.out.println(" Awesome!! You are all caught up :)");
                     } else {
-                        System.out.println(" Awesome!! Just " + taskLeft + " more task(s) to go!");
+                        System.out.println(" Awesome!! Just " + pendingTaskCount + " more task(s) to go!");
                     }
                 }
-                System.out.println("\t" + taskList.get(index).toString());
+                System.out.println("\t" + taskList.get(doneTaskIndex).toString());
                 break;
             default:
-                taskLeft++;
-                Task newTask = new Task(input);
+                pendingTaskCount++;
+                Task newTask = new Task(userInput);
                 taskList.add(newTask);
-                System.out.println(" Added: " + input);
+                System.out.println(" Added: " + userInput);
                 break;
             }
             System.out.println(HORIZONTAL_LINE);
