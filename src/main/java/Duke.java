@@ -35,7 +35,7 @@ public class Duke {
             case "done":
                 int doneTaskIndex = Integer.parseInt(inputArguments[1]) - 1;
                 if (doneTaskIndex >= taskList.size() || doneTaskIndex <= -1) {
-                    System.out.println("Uhh... There's no task numbered: " + doneTaskIndex);
+                    System.out.println("Uhh... There's no task numbered: " + (doneTaskIndex + 1));
                     break;
                 } else if (taskList.get(doneTaskIndex).getStatus()) {
                     System.out.println(" Remember? You have completed this task already.");
