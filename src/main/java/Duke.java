@@ -3,18 +3,25 @@ import java.util.Scanner;
 
 public class Duke {
     private static int pendingTaskCount = 0;
-    private static final int REQUIRED_NUMBER_OF_ARGUMENT_FOR_TODO = 2;
-    private static final int REQUIRED_NUMBER_OF_ARGUMENT_FOR_EVENT = 4;
-    private static final int REQUIRED_NUMBER_OF_ARGUMENT_FOR_DEADLINE = 4;
+
+    private static final String COMMAND_BYE = "bye";
+    private static final String COMMAND_LIST = "list";
+    private static final String COMMAND_DONE = "done";
+    private static final String COMMAND_TODO = "todo";
+    private static final String COMMAND_DEADLINE = "deadline";
+    private static final String COMMAND_EVENT = "event";
     private static final String HORIZONTAL_LINE =
             "____________________________________________________________";
 
-    private static void addTask(ArrayList<Task> taskList, Task newTask) {
-        pendingTaskCount++;
-        taskList.add(newTask);
-        System.out.println(" Gotcha! I've added this task: ");
-        System.out.println("\t" + newTask.toString());
-        System.out.println(" There's currently " + taskList.size() + " task(s) in the list." );
+    private static final int REQUIRED_NUMBER_OF_ARGUMENT_FOR_TODO = 2;
+    private static final int REQUIRED_NUMBER_OF_ARGUMENT_FOR_EVENT = 4;
+    private static final int REQUIRED_NUMBER_OF_ARGUMENT_FOR_DEADLINE = 4;
+
+    private static void greetUser() {
+        System.out.println(HORIZONTAL_LINE);
+        System.out.println(" Hello! I'm Duke");
+        System.out.println(" What can I do for you?");
+        System.out.println(HORIZONTAL_LINE);
     }
 
     private static String[] parseUserInput(String userInput) {
@@ -23,11 +30,13 @@ public class Duke {
         String userCommand = splitInput[0];
         inputArguments.add(userCommand);
 
-        // If applicable, build the arguments: description and command option (at/by) information
+        // Build arguments (if any): description and command option (at/by) information (only 1 is expected)
         String commandOption = "";
+        boolean isFirstCommandOption;
         StringBuilder sbArgument = new StringBuilder();
         for (int i = 1; i < splitInput.length; i++) {
-            if (commandOption.isEmpty() && (splitInput[i].equals("/by") || splitInput[i].equals("/at"))) {
+            isFirstCommandOption = commandOption.isEmpty() && splitInput[i].startsWith("/");
+            if (isFirstCommandOption) {
                 String description = sbArgument.toString().stripTrailing();
                 commandOption = splitInput[i];
                 inputArguments.add(description);
@@ -35,6 +44,7 @@ public class Duke {
                 sbArgument.setLength(0);
                 continue;
             }
+
             sbArgument.append(splitInput[i]).append(" ");
         }
 
@@ -44,11 +54,16 @@ public class Duke {
         return inputArguments.toArray(new String[0]);
     }
 
+    private static void addTask(ArrayList<Task> taskList, Task newTask) {
+        pendingTaskCount++;
+        taskList.add(newTask);
+        System.out.println(" Gotcha! I've added this task: ");
+        System.out.println("\t" + newTask.toString());
+        System.out.println(" There's currently " + taskList.size() + " task(s) in the list." );
+    }
+
     public static void main(String[] args) {
-        System.out.println(HORIZONTAL_LINE);
-        System.out.println(" Hello! I'm Duke");
-        System.out.println(" What can I do for you?");
-        System.out.println(HORIZONTAL_LINE);
+        greetUser();
 
         ArrayList<Task> taskList = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
@@ -60,13 +75,14 @@ public class Duke {
             String[] inputArguments = parseUserInput(userInput);
             String userCommand = inputArguments[0];
             String description = inputArguments[1];
+            boolean isValidDescription, isValidOption, isValidOptionInformation, isValidCommand;
             switch (userCommand) {
-            case "bye":
+            case COMMAND_BYE:
                 System.out.println(" Bye-bye. Hope to see you again soon!");
                 System.out.println(HORIZONTAL_LINE);
                 return;
-            case "list":
-                if (taskList.size() == 0) {
+            case COMMAND_LIST:
+                if (taskList.isEmpty()) {
                     System.out.println(" Uhh.. It's empty..");
                 } else {
                     System.out.println(" Here are the tasks in your list: ");
@@ -76,13 +92,17 @@ public class Duke {
                     }
                 }
                 break;
-            case "done":
+            case COMMAND_DONE:
                 int doneTaskIndex = Integer.parseInt(description) - 1;
-                if (doneTaskIndex >= taskList.size() || doneTaskIndex <= -1) {
+                boolean isValidTaskIndex = doneTaskIndex < taskList.size() && doneTaskIndex >= 0;
+                if (!isValidTaskIndex) {
                     doneTaskIndex++;
                     System.out.println(" Uhh... There's no task numbered: " + doneTaskIndex);
                     break;
-                } else if (taskList.get(doneTaskIndex).getStatus()) {
+                }
+
+                Task taskToMark = taskList.get(doneTaskIndex);
+                if (taskToMark.getStatus()) {
                     System.out.println(" Remember? You have completed this task already.");
                 } else {
                     pendingTaskCount--;
@@ -93,11 +113,13 @@ public class Duke {
                         System.out.println(" Awesome!! Just " + pendingTaskCount + " more task(s) to go!");
                     }
                 }
+
                 System.out.println("\t" + taskList.get(doneTaskIndex).toString());
                 break;
-            case "todo":
+            case COMMAND_TODO:
                 if (inputArguments.length == REQUIRED_NUMBER_OF_ARGUMENT_FOR_TODO) {
-                    if (!description.isBlank()) {
+                    isValidDescription = !description.isBlank();
+                    if (isValidDescription) {
                         Todo newTodo = new Todo(description);
                         addTask(taskList, newTodo);
                         break;
@@ -106,11 +128,17 @@ public class Duke {
 
                 System.out.println(" Failed to add new todo: check syntax and no blanks!");
                 break;
-            case "deadline":
+            case COMMAND_DEADLINE:
                 if (inputArguments.length == REQUIRED_NUMBER_OF_ARGUMENT_FOR_DEADLINE) {
                     String byOption = inputArguments[2];
                     String byInformation = inputArguments[3];
-                    if (!description.isBlank() && byOption.equals("/by") && !byInformation.isBlank()) {
+
+                    isValidDescription = !description.isBlank();
+                    isValidOption = byOption.equals("/by");
+                    isValidOptionInformation = !byInformation.isBlank();
+                    isValidCommand = isValidDescription && isValidOption && isValidOptionInformation;
+
+                    if (isValidCommand) {
                         Deadline newDeadline = new Deadline(description, byInformation);
                         addTask(taskList, newDeadline);
                         break;
@@ -119,11 +147,17 @@ public class Duke {
 
                 System.out.println(" Failed to add new deadline: check syntax and no blanks!");
                 break;
-            case "event":
+            case COMMAND_EVENT:
                 if (inputArguments.length == REQUIRED_NUMBER_OF_ARGUMENT_FOR_EVENT) {
                     String atOption = inputArguments[2];
                     String atInformation = inputArguments[3];
-                    if (!description.isBlank() && atOption.equals("/at") && !atInformation.isBlank()) {
+
+                    isValidDescription = !description.isBlank();
+                    isValidOption = atOption.equals("/at");
+                    isValidOptionInformation = !atInformation.isBlank();
+                    isValidCommand = isValidDescription && isValidOption && isValidOptionInformation;
+
+                    if (isValidCommand) {
                         Event newEvent = new Event(description, atInformation);
                         addTask(taskList, newEvent);
                         break;
@@ -136,6 +170,7 @@ public class Duke {
                 System.out.println(" Command \"" + userCommand + "\" is not recognized by Duke :(");
                 break;
             }
+
             System.out.println(HORIZONTAL_LINE);
         }
     }
