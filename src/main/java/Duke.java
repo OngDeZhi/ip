@@ -32,10 +32,9 @@ public class Duke {
 
         // Build arguments (if any): description and command option (at/by) information (only 1 is expected)
         String commandOption = "";
-        boolean isFirstCommandOption;
         StringBuilder sbArgument = new StringBuilder();
         for (int i = 1; i < splitInput.length; i++) {
-            isFirstCommandOption = commandOption.isEmpty() && splitInput[i].startsWith("/");
+            boolean isFirstCommandOption = commandOption.isEmpty() && splitInput[i].startsWith("/");
             if (isFirstCommandOption) {
                 String description = sbArgument.toString().stripTrailing();
                 commandOption = splitInput[i];
@@ -65,9 +64,10 @@ public class Duke {
     public static void main(String[] args) {
         greetUser();
 
+        boolean shouldExit = false;
         ArrayList<Task> taskList = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
-        while (true) {
+        while (!shouldExit) {
             System.out.print(System.lineSeparator() + ">> ");
             String userInput = scanner.nextLine();
             System.out.println(HORIZONTAL_LINE);
@@ -79,8 +79,9 @@ public class Duke {
             switch (userCommand) {
             case COMMAND_BYE:
                 System.out.println(" Bye-bye. Hope to see you again soon!");
-                System.out.println(HORIZONTAL_LINE);
-                return;
+                shouldExit = true;
+                break;
+
             case COMMAND_LIST:
                 if (taskList.isEmpty()) {
                     System.out.println(" Uhh.. It's empty..");
@@ -92,6 +93,7 @@ public class Duke {
                     }
                 }
                 break;
+
             case COMMAND_DONE:
                 int doneTaskIndex = Integer.parseInt(description) - 1;
                 boolean isValidTaskIndex = doneTaskIndex < taskList.size() && doneTaskIndex >= 0;
@@ -116,6 +118,7 @@ public class Duke {
 
                 System.out.println("\t" + taskList.get(doneTaskIndex).toString());
                 break;
+
             case COMMAND_TODO:
                 if (inputArguments.length == REQUIRED_NUMBER_OF_ARGUMENT_FOR_TODO) {
                     isValidDescription = !description.isBlank();
@@ -128,6 +131,7 @@ public class Duke {
 
                 System.out.println(" Failed to add new todo: check syntax and no blanks!");
                 break;
+
             case COMMAND_DEADLINE:
                 if (inputArguments.length == REQUIRED_NUMBER_OF_ARGUMENT_FOR_DEADLINE) {
                     String byOption = inputArguments[2];
@@ -147,6 +151,7 @@ public class Duke {
 
                 System.out.println(" Failed to add new deadline: check syntax and no blanks!");
                 break;
+
             case COMMAND_EVENT:
                 if (inputArguments.length == REQUIRED_NUMBER_OF_ARGUMENT_FOR_EVENT) {
                     String atOption = inputArguments[2];
@@ -166,6 +171,7 @@ public class Duke {
 
                 System.out.println(" Failed to add new event: check syntax and no blanks!");
                 break;
+
             default:
                 System.out.println(" Command \"" + userCommand + "\" is not recognized by Duke :(");
                 break;
