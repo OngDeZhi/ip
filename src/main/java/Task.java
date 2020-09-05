@@ -1,6 +1,8 @@
 public class Task {
     protected String description;
     protected boolean isDone;
+    private static final String TICK_SYMBOL = "\u2713";
+    private static final String CROSS_SYMBOL = "\u2718";
 
     public Task(String description) {
         this.description = description;
@@ -12,8 +14,7 @@ public class Task {
     }
 
     public String getStatusIcon() {
-        // Returns tick or cross symbol
-        return (isDone ? "\u2713" : "\u2718");
+        return (isDone ? TICK_SYMBOL : CROSS_SYMBOL);
     }
 
     public String toString() {
