@@ -4,6 +4,8 @@ import java.util.Scanner;
 public class Duke {
     private static int pendingTaskCount = 0;
     private static boolean shouldExit = false;
+    private static final Scanner CONSOLE = new Scanner(System.in);
+    private static final ArrayList<Task> taskList = new ArrayList<>();
 
     private static final String COMMAND_BYE = "bye";
     private static final String COMMAND_LIST = "list";
@@ -11,6 +13,9 @@ public class Duke {
     private static final String COMMAND_TODO = "todo";
     private static final String COMMAND_DEADLINE = "deadline";
     private static final String COMMAND_EVENT = "event";
+
+    private static final String REQUIRED_DEADLINE_OPTION = "/by";
+    private static final String REQUIRED_EVENT_OPTION = "/at";
     private static final String HORIZONTAL_LINE =
             "____________________________________________________________";
 
@@ -23,42 +28,19 @@ public class Duke {
 
     public static void main(String[] args) {
         greetUser();
-        ArrayList<Task> taskList = new ArrayList<>();
-        Scanner scanner = new Scanner(System.in);
         while (!shouldExit) {
             try {
-                System.out.print(System.lineSeparator() + ">> ");
-                String userInput = scanner.nextLine();
-                System.out.println(HORIZONTAL_LINE);
-
+                String userInput = readUserInput();
                 String[] inputArguments = parseUserInput(userInput);
-                String userCommand = inputArguments[0];
-                switch (userCommand) {
-                case COMMAND_BYE:
-                    byeCommand(inputArguments);
-                    break;
-                case COMMAND_LIST:
-                    listCommand(inputArguments, taskList);
-                    break;
-                case COMMAND_DONE:
-                    doneCommand(inputArguments, taskList);
-                    break;
-                case COMMAND_TODO:
-                    todoCommand(inputArguments, taskList);
-                    break;
-                case COMMAND_DEADLINE:
-                    deadlineCommand(inputArguments, taskList);
-                    break;
-                case COMMAND_EVENT:
-                    eventCommand(inputArguments, taskList);
-                    break;
-                default:
-                    unknownCommand(userCommand);
-                    break;
-                }
-            } catch (DukeException e) {
-                System.out.println(e.getMessage());
+                executeCommand(inputArguments);
+            } catch (DukeException exception) {
+                System.out.println("☹ OOPS!!!" + exception.getMessage());
+            } catch (NumberFormatException exception) {
+                System.out.println("☹ OOPS!!! The task index must be an integer.");
+            } catch (IndexOutOfBoundsException exception) {
+                System.out.println("☹ OOPS!!! Invalid task number received.");
             }
+
             System.out.println(HORIZONTAL_LINE);
         }
     }
@@ -68,6 +50,13 @@ public class Duke {
         System.out.println(" Hello! I'm Duke");
         System.out.println(" What can I do for you?");
         System.out.println(HORIZONTAL_LINE);
+    }
+
+    private static String readUserInput() {
+        System.out.print(System.lineSeparator() + ">> ");
+        String userInput = CONSOLE.nextLine();
+        System.out.println(HORIZONTAL_LINE);
+        return userInput;
     }
 
     private static String[] parseUserInput(String userInput) {
@@ -99,16 +88,39 @@ public class Duke {
         return inputArguments.toArray(new String[0]);
     }
 
-    private static boolean isInteger(String value) {
-        try {
-            Integer.parseInt(value);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
+    private static void executeCommand(String[] inputArguments) throws DukeException {
+        String userCommand = inputArguments[0];
+        switch (userCommand) {
+        case COMMAND_BYE:
+            validateCommand(REQUIRED_BYE_ARGUMENT_COUNT, inputArguments);
+            byeCommand();
+            break;
+        case COMMAND_LIST:
+            validateCommand(REQUIRED_LIST_ARGUMENT_COUNT, inputArguments);
+            listCommand();
+            break;
+        case COMMAND_DONE:
+            validateCommand(REQUIRED_DONE_ARGUMENT_COUNT, inputArguments);
+            doneCommand(inputArguments);
+            break;
+        case COMMAND_TODO:
+            validateCommand(REQUIRED_TODO_ARGUMENT_COUNT, inputArguments);
+            todoCommand(inputArguments);
+            break;
+        case COMMAND_DEADLINE:
+            validateCommand(REQUIRED_DEADLINE_ARGUMENT_COUNT, inputArguments);
+            deadlineCommand(inputArguments);
+            break;
+        case COMMAND_EVENT:
+            validateCommand(REQUIRED_EVENT_ARGUMENT_COUNT, inputArguments);
+            eventCommand(inputArguments);
+            break;
+        default:
+            throw new DukeException(" Command \"" + userCommand + "\" is not recognized by Duke :(");
         }
     }
 
-    private static void addTask(ArrayList<Task> taskList, Task newTask) {
+    private static void addTask(Task newTask) {
         pendingTaskCount++;
         taskList.add(newTask);
         System.out.println(" Gotcha! I've added this task: ");
@@ -116,34 +128,12 @@ public class Duke {
         System.out.println(" There's currently " + taskList.size() + " task(s) in the list." );
     }
 
-    private static void byeCommand(String[] inputArguments) throws DukeException {
-        int argumentCount = inputArguments.length - 1;
-        if (argumentCount > REQUIRED_BYE_ARGUMENT_COUNT) {
-            throw new DukeException(" ☹ OOPS!!! There's too many arguments for \"bye\".");
-        }
-
-        String description = inputArguments[1];
-        boolean isValidDescription = !description.isBlank();
-        if (isValidDescription) {
-            throw new DukeException(" ☹ OOPS!!! There is no need for a description for \"bye\".");
-        }
-
+    private static void byeCommand() {
         System.out.println(" Bye-bye. Hope to see you again soon!");
         shouldExit = true;
     }
 
-    private static void listCommand(String[] inputArguments, ArrayList<Task> taskList) throws DukeException {
-        int argumentCount = inputArguments.length - 1;
-        if (argumentCount > REQUIRED_LIST_ARGUMENT_COUNT) {
-            throw new DukeException(" ☹ OOPS!!! There's too many arguments for \"list\".");
-        }
-
-        String description = inputArguments[1];
-        boolean isValidDescription = !description.isBlank();
-        if (isValidDescription) {
-            throw new DukeException(" ☹ OOPS!!! There is no need for a description for \"list\".");
-        }
-
+    private static void listCommand() {
         if (taskList.isEmpty()) {
             System.out.println(" Uhh.. It's empty..");
             return;
@@ -156,31 +146,12 @@ public class Duke {
         }
     }
 
-    private static void doneCommand(String[] inputArguments, ArrayList<Task> taskList) throws DukeException {
-        int argumentCount = inputArguments.length;
-        if (argumentCount > REQUIRED_DONE_ARGUMENT_COUNT) {
-            throw new DukeException(" ☹ OOPS!!! There's too many arguments for \"done\".");
-        }
-
+    private static void doneCommand(String[] inputArguments) {
         String doneTaskIndexString = inputArguments[1];
-        boolean isValidTaskIndexString = !doneTaskIndexString.isBlank();
-        boolean isValidInteger = isInteger(doneTaskIndexString);
-
-        if (!isValidTaskIndexString) {
-            throw new DukeException(" ☹ OOPS!!! The task index for \"done\" cannot be empty.");
-        } else if (!isValidInteger) {
-            throw new DukeException(" ☹ OOPS!!! The task index for \"done\" must be an integer.");
-        }
-
         int doneTaskIndex = Integer.parseInt(doneTaskIndexString) - 1;
-        boolean isValidTaskIndex = doneTaskIndex < taskList.size() && doneTaskIndex >= 0;
-        if (!isValidTaskIndex) {
-            doneTaskIndex++;
-            throw new DukeException(" ☹ OOPS!!! There is no task indexed: " + doneTaskIndex);
-        }
 
-        Task taskToMark = taskList.get(doneTaskIndex);
-        if (taskToMark.getStatus()) {
+        Task doneTask = taskList.get(doneTaskIndex);
+        if (doneTask.getStatus()) {
             System.out.println(" Remember? You have completed this task already.");
         } else {
             pendingTaskCount--;
@@ -195,79 +166,87 @@ public class Duke {
         System.out.println("\t" + taskList.get(doneTaskIndex).toString());
     }
 
-    private static void todoCommand(String[] inputArguments, ArrayList<Task> taskList) throws DukeException {
-        int argumentCount = inputArguments.length;
-        if (argumentCount > REQUIRED_TODO_ARGUMENT_COUNT) {
-            throw new DukeException(" ☹ OOPS!!! There's too many arguments for \"todo\".");
-        }
-
+    private static void todoCommand(String[] inputArguments) {
         String description = inputArguments[1];
-        boolean isValidDescription = !description.isBlank();
-        if (!isValidDescription) {
-            throw new DukeException(" ☹ OOPS!!! The description of \"todo\" cannot be empty.");
-        }
-
         Todo newTodo = new Todo(description);
-        addTask(taskList, newTodo);
+        addTask(newTodo);
     }
 
-    private static void deadlineCommand(String[] inputArguments, ArrayList<Task> taskList) throws DukeException {
-        int argumentCount = inputArguments.length;
-        if (argumentCount > REQUIRED_DEADLINE_ARGUMENT_COUNT) {
-            throw new DukeException(" ☹ OOPS!!! There's too many arguments for \"deadline\".");
-        } else if (argumentCount < REQUIRED_DEADLINE_ARGUMENT_COUNT) {
-            throw new DukeException(" ☹ OOPS!!! There's too little arguments for \"deadline\".");
-        }
-
+    private static void deadlineCommand(String[] inputArguments) {
         String description = inputArguments[1];
-        String byOption = inputArguments[2];
         String byInformation = inputArguments[3];
-
-        boolean isValidDescription = !description.isBlank();
-        boolean isValidByOption = byOption.equals("/by");
-        boolean isValidByInformation = !byInformation.isBlank();
-
-        if (!isValidDescription) {
-            throw new DukeException(" ☹ OOPS!!! The description of \"deadline\" cannot be empty.");
-        } else if (!isValidByOption) {
-            throw new DukeException(" ☹ OOPS!!! The \"by\" option is missing for \"deadline\".");
-        } else if (!isValidByInformation) {
-            throw new DukeException(" ☹ OOPS!!! The \"by\" information is missing for \"deadline\".");
-        }
-
         Deadline newDeadline = new Deadline(description, byInformation);
-        addTask(taskList, newDeadline);
+        addTask(newDeadline);
     }
 
-    private static void eventCommand(String[] inputArguments, ArrayList<Task> taskList) throws DukeException {
-        int argumentCount = inputArguments.length;
-        if (argumentCount > REQUIRED_EVENT_ARGUMENT_COUNT) {
-            throw new DukeException(" ☹ OOPS!!! There's too many arguments for \"event\".");
-        } else if (argumentCount < REQUIRED_EVENT_ARGUMENT_COUNT) {
-            throw new DukeException(" ☹ OOPS!!! There's too little arguments for \"event\".");
-        }
-
+    private static void eventCommand(String[] inputArguments) {
         String description = inputArguments[1];
-        String atOption = inputArguments[2];
         String atInformation = inputArguments[3];
-
-        boolean isValidDescription = !description.isBlank();
-        boolean isValidAtOption = atOption.equals("/at");
-        boolean isValidAtInformation = !atInformation.isBlank();
-
-        if (!isValidDescription) {
-            throw new DukeException(" ☹ OOPS!!! The description of \"event\" cannot be empty.");
-        } else if (!isValidAtOption) {
-            throw new DukeException(" ☹ OOPS!!! The \"at\" option is missing for \"event\".");
-        } else if (!isValidAtInformation) {
-            throw new DukeException(" ☹ OOPS!!! The \"at\" information is missing for \"event\".");
-        }
-
         Event newEvent = new Event(description, atInformation);
-        addTask(taskList, newEvent);
+        addTask(newEvent);
     }
 
-    private static void unknownCommand(String userCommand) throws DukeException {
-        throw new DukeException(" ☹ OOPS!!! Command \"" + userCommand + "\" is not recognized by Duke :(");
+    private static void validateCommand(int requiredArgumentCount, String[] inputArguments) throws DukeException {
+        String userCommand = inputArguments[0];
+        String description = inputArguments[1];
+        int argumentCount = inputArguments.length;
+        boolean isValidDescription;
+
+        if (userCommand.equals(COMMAND_BYE) || userCommand.equals(COMMAND_LIST)) {
+            argumentCount--;
+        }
+
+        if (argumentCount > requiredArgumentCount) {
+            throw new DukeException(" There's too many arguments for \"" + userCommand + "\".");
+        } else if (argumentCount < requiredArgumentCount) {
+            throw new DukeException(" There's too little arguments for \"" + userCommand + "\".");
+        }
+
+        switch(requiredArgumentCount) {
+        case 1:
+            isValidDescription = !description.isBlank();
+            if (isValidDescription) {
+                throw new DukeException(" There's no need for a description for \"" + userCommand + "\".");
+            }
+
+            break;
+        case 2:
+            isValidDescription = !description.isBlank();
+            if (userCommand.equals(COMMAND_DONE) && !isValidDescription) {
+                throw new DukeException(" The task index of \"done\" cannot be empty.");
+            } else if (userCommand.equals(COMMAND_TODO) && !isValidDescription) {
+                throw new DukeException(" The description of \"todo\" cannot be empty.");
+            }
+
+            break;
+        case 4:
+            String requiredCommandOption = "";
+            String commandOption = inputArguments[2];
+            String commandOptionInformation = inputArguments[3];
+
+            if (userCommand.equals(COMMAND_DEADLINE)) {
+                requiredCommandOption = REQUIRED_DEADLINE_OPTION;
+            } else if (userCommand.equals(COMMAND_EVENT)) {
+                requiredCommandOption = REQUIRED_EVENT_OPTION;
+            }
+
+            isValidDescription = !description.isBlank();
+            boolean isValidOption = commandOption.equals(requiredCommandOption);
+            boolean isValidOptionInformation = !commandOptionInformation.isBlank();
+
+            if (!isValidDescription) {
+                throw new DukeException(" The description of \"" + userCommand + "\" cannot be empty.");
+            } else if (!isValidOption) {
+                throw new DukeException(" The \"" + requiredCommandOption + "\" option is missing for \""
+                        + userCommand + "\".");
+            } else if (!isValidOptionInformation) {
+                throw new DukeException(" The \"" + requiredCommandOption + "\" information is missing for \""
+                        + userCommand + "\".");
+            }
+
+            break;
+        default:
+            break;
+        }
     }
 }
