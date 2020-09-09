@@ -4,17 +4,33 @@ event project meeting /at Aug 6th 2-4pm
 todo join sports club
 todo borrow book
 done 1
-done 4
 list
 deadline return book /by Sunday
-done 2
 event project meeting /at Mon 2-4pm
-done 3
 deadline do homework /by no idea :-p
+done 1
+done2
+blah
 list
-done 2
-done 5
+done
+todo
+deadline
+event
+deadline 123
+deadline 123 /by
+deadline 123 /at 123
+event 123
+event 123 /at
+event 123 /by 123
 list
+done a
+done 0
+done 100
+list
+bye 123
+bye 123 /at 
+list 123
+list 123 /at
 done 7
 list
 bye
