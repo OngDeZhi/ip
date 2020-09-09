@@ -32,18 +32,27 @@ public class Parser {
     private static final int REQUIRED_EVENT_ARGUMENT_COUNT = 4;
 
     private static final Scanner CONSOLE = new Scanner(System.in);
+    private static final String HORIZONTAL_LINE =
+            "____________________________________________________________";
 
     public static Command readUserInput() throws DukeException {
+        System.out.print(System.lineSeparator() + " >> ");
         String userInput = CONSOLE.nextLine();
+        System.out.println(HORIZONTAL_LINE);
         String[] inputArguments = parseUserInput(userInput);
         return generateCommand(inputArguments);
     }
 
-    private static String[] parseUserInput(String userInput) {
+    private static String[] parseUserInput(String userInput) throws DukeException {
         ArrayList<String> inputArguments = new ArrayList<>();
         String[] splitInput = userInput.split(" ");
-        String userCommand = splitInput[0];
-        inputArguments.add(userCommand);
+
+        try {
+            String userCommand = splitInput[0];
+            inputArguments.add(userCommand);
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            throw new DukeException(" Input \"" + userInput + "\" is not usable by Duke :(");
+        }
 
         // Build arguments (if any): description and command option (at/by) information (only 1 is expected)
         String commandOption = "";
@@ -125,9 +134,9 @@ public class Parser {
         case 2:
             isValidDescription = !description.isBlank();
             if (userCommand.equals(COMMAND_DONE) && !isValidDescription) {
-                throw new DukeException(" The task number of \"done\" cannot be empty.");
+                throw new DukeException(" The task number for \"" + userCommand + "\" cannot be empty.");
             } else if (userCommand.equals(COMMAND_TODO) && !isValidDescription) {
-                throw new DukeException(" The description of \"todo\" cannot be empty.");
+                throw new DukeException(" The description of \"" + userCommand + "\" cannot be empty.");
             }
             break;
         case 4:
