@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.exception.DukeException;
 import duke.task.Task;
 
 import java.util.ArrayList;
@@ -12,5 +13,5 @@ public abstract class Command {
         return shouldExit;
     }
 
-    public abstract void execute(ArrayList<Task> taskList);
+    public abstract void execute(ArrayList<Task> taskList) throws DukeException;
 }

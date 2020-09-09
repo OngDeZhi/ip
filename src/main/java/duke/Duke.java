@@ -17,18 +17,11 @@ public class Duke {
         printWelcomeMessage();
         while (!shouldExit) {
             try {
-                System.out.print(System.lineSeparator() + " >> ");
                 Command dukeCommand = Parser.readUserInput();
-                System.out.println(HORIZONTAL_LINE);
                 dukeCommand.execute(taskList);
                 shouldExit = Command.getShouldExit();
             } catch (DukeException exception) {
-                System.out.println(HORIZONTAL_LINE);
                 printErrorMessage(exception.getMessage());
-            } catch (NumberFormatException exception) {
-                printErrorMessage(" This is not a number.");
-            } catch (IndexOutOfBoundsException exception) {
-                printErrorMessage(" This is not a valid task number.");
             }
 
             System.out.println(HORIZONTAL_LINE);
