@@ -13,8 +13,8 @@ public class AddCommand extends Command {
 
     @Override
     public void execute(ArrayList<Task> taskList) {
-        pendingTaskCount++;
         taskList.add(newTask);
+        Task.incrementPendingTaskCount();
         System.out.println(" Gotcha! I've added this task: ");
         System.out.println("\t" + newTask.toString());
         System.out.println(" There's currently " + taskList.size() + " task(s) in the list.");

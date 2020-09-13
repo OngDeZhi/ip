@@ -3,6 +3,7 @@ package duke.parser;
 import duke.command.AddCommand;
 import duke.command.ByeCommand;
 import duke.command.Command;
+import duke.command.DeleteCommand;
 import duke.command.DoneCommand;
 import duke.command.ListCommand;
 import duke.exception.DukeException;
@@ -17,6 +18,7 @@ public class Parser {
     private static final String COMMAND_BYE = "bye";
     private static final String COMMAND_LIST = "list";
     private static final String COMMAND_DONE = "done";
+    private static final String COMMAND_DELETE = "delete";
     private static final String COMMAND_TODO = "todo";
     private static final String COMMAND_DEADLINE = "deadline";
     private static final String COMMAND_EVENT = "event";
@@ -27,6 +29,7 @@ public class Parser {
     private static final int REQUIRED_BYE_ARGUMENT_COUNT = 1;
     private static final int REQUIRED_LIST_ARGUMENT_COUNT = 1;
     private static final int REQUIRED_DONE_ARGUMENT_COUNT = 2;
+    private static final int REQUIRED_DELETE_ARGUMENT_COUNT = 2;
     private static final int REQUIRED_TODO_ARGUMENT_COUNT = 2;
     private static final int REQUIRED_DEADLINE_ARGUMENT_COUNT = 4;
     private static final int REQUIRED_EVENT_ARGUMENT_COUNT = 4;
@@ -90,6 +93,9 @@ public class Parser {
         case COMMAND_DONE:
             validateCommand(REQUIRED_DONE_ARGUMENT_COUNT, inputArguments);
             return new DoneCommand(description);
+        case COMMAND_DELETE:
+            validateCommand(REQUIRED_DELETE_ARGUMENT_COUNT, inputArguments);
+            return new DeleteCommand(description);
         case COMMAND_TODO:
             validateCommand(REQUIRED_TODO_ARGUMENT_COUNT, inputArguments);
             Todo newTodo = new Todo(description);
@@ -133,7 +139,8 @@ public class Parser {
             break;
         case 2:
             isValidDescription = !description.isBlank();
-            if (userCommand.equals(COMMAND_DONE) && !isValidDescription) {
+            boolean isDoneOrDelete = userCommand.equals(COMMAND_DONE) || userCommand.equals(COMMAND_DELETE);
+            if (isDoneOrDelete && !isValidDescription) {
                 throw new DukeException(" The task number for \"" + userCommand + "\" cannot be empty.");
             } else if (userCommand.equals(COMMAND_TODO) && !isValidDescription) {
                 throw new DukeException(" The description of \"" + userCommand + "\" cannot be empty.");
