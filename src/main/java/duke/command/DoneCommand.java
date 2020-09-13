@@ -20,14 +20,16 @@ public class DoneCommand extends Command {
     public void execute(ArrayList<Task> taskList) throws DukeException {
         try {
             Task doneTask = taskList.get(doneTaskIndex);
-            if (doneTask.getStatus()) {
+            if (doneTask.getIsDone()) {
                 System.out.println(" Remember? You have completed this task already.");
                 System.out.println("\t" + taskList.get(doneTaskIndex).toString());
                 return;
             }
 
-            pendingTaskCount--;
-            taskList.get(doneTaskIndex).markAsDone();
+            taskList.get(doneTaskIndex).setIsDone(true);
+            writeToDukeStorage(taskList);
+            int pendingTaskCount = Task.getPendingTaskCount();
+
             if (pendingTaskCount == 0) {
                 System.out.println(" Awesome!! You are all caught up :)");
             } else {

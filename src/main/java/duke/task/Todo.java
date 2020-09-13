@@ -9,4 +9,8 @@ public class Todo extends Task {
     public String toString() {
         return "[T]" + super.toString();
     }
+
+    public String toFileFormatString() {
+        return "T" + super.toFileFormatString();
+    }
 }

@@ -8,6 +8,7 @@ import duke.command.ListCommand;
 import duke.exception.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
+import duke.task.Task;
 import duke.task.Todo;
 
 import java.util.ArrayList;
@@ -34,6 +35,36 @@ public class Parser {
     private static final Scanner CONSOLE = new Scanner(System.in);
     private static final String HORIZONTAL_LINE =
             "____________________________________________________________";
+
+    public static Task convertStringToTask(String taskInString) {
+        try {
+            String[] splitTaskInString = taskInString.split("\\|");
+            String taskType = splitTaskInString[0].trim();
+            String description = splitTaskInString[2].trim();
+            boolean isDone = splitTaskInString[1].trim().equals("1");
+
+            switch (taskType) {
+            case "T":
+                Todo newTodo = new Todo(description);
+                newTodo.setIsDone(isDone);
+                return newTodo;
+            case "D":
+                String byInformation = splitTaskInString[3].trim();
+                Deadline newDeadline = new Deadline(description, byInformation);
+                newDeadline.setIsDone(isDone);
+                return newDeadline;
+            case "E":
+                String atInformation = splitTaskInString[3].trim();
+                Event newEvent = new Event(description, atInformation);
+                newEvent.setIsDone(isDone);
+                return newEvent;
+            default:
+                return null;
+            }
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            return null;
+        }
+    }
 
     public static Command readUserInput() throws DukeException {
         System.out.print(System.lineSeparator() + " >> ");
