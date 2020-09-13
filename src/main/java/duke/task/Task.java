@@ -6,6 +6,7 @@ public class Task {
     private static int pendingTaskCount = 0;
     private static final String TICK_SYMBOL = "\u2713";
     private static final String CROSS_SYMBOL = "\u2718";
+    protected static final String FILE_FORMAT_DELIMITER = " | ";
 
     public Task(String description) {
         this.description = description;
@@ -21,6 +22,10 @@ public class Task {
 
     public boolean getIsDone() {
         return isDone;
+    }
+
+    public int getIsDoneInInteger() {
+        return (isDone ? 1 : 0);
     }
 
     public String getStatusIcon() {
@@ -41,5 +46,9 @@ public class Task {
 
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
+    }
+
+    public String toFileFormatString() {
+        return FILE_FORMAT_DELIMITER + getIsDoneInInteger() + FILE_FORMAT_DELIMITER + description;
     }
 }

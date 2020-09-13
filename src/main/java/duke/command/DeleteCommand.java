@@ -25,6 +25,8 @@ public class DeleteCommand extends Command {
             }
 
             taskList.remove(deleteTaskIndex);
+            writeToDukeStorage(taskList);
+
             System.out.println(" Noted! I have removed this task: ");
             System.out.println("\t" + deleteTask.toString());
             System.out.println(" There's currently " + taskList.size() + " task(s) in the list.");

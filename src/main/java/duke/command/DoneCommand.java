@@ -27,8 +27,9 @@ public class DoneCommand extends Command {
             }
 
             taskList.get(doneTaskIndex).setIsDone(true);
-            int pendingTaskCount = Task.getPendingTaskCount();
+            writeToDukeStorage(taskList);
 
+            int pendingTaskCount = Task.getPendingTaskCount();
             if (pendingTaskCount == 0) {
                 System.out.println(" Awesome!! You are all caught up :)");
             } else {
