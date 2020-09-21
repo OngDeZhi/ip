@@ -147,8 +147,25 @@ public class Parser {
     }
 
     private static void validateCommand(int requiredArgumentCount, String[] inputArguments) throws DukeException {
+        validateArgumentCount(requiredArgumentCount, inputArguments);
+        switch(requiredArgumentCount) {
+        case 1:
+            validateOneArgumentCommand(inputArguments);
+            break;
+        case 2:
+            validateTwoArgumentCommand(inputArguments);
+            break;
+        case 4:
+            validateFourArgumentCommand(inputArguments);
+            break;
+        default:
+            break;
+        }
+    }
+
+    private static void validateArgumentCount(int requiredArgumentCount, String[] inputArguments)
+            throws DukeException {
         String userCommand = inputArguments[0];
-        String description = inputArguments[1];
         int argumentCount = inputArguments.length;
         if (userCommand.equals(COMMAND_BYE) || userCommand.equals(COMMAND_LIST)) {
             argumentCount--;
@@ -159,51 +176,56 @@ public class Parser {
         } else if (argumentCount < requiredArgumentCount) {
             throw new DukeException(" There's too little arguments for \"" + userCommand + "\".");
         }
+    }
 
-        boolean isValidDescription;
-        switch(requiredArgumentCount) {
-        case 1:
-            isValidDescription = !description.isBlank();
-            if (isValidDescription) {
-                throw new DukeException(" There's no need for a description for \"" + userCommand + "\".");
-            }
-            break;
-        case 2:
-            isValidDescription = !description.isBlank();
-            boolean isDoneOrDelete = userCommand.equals(COMMAND_DONE) || userCommand.equals(COMMAND_DELETE);
-            if (isDoneOrDelete && !isValidDescription) {
-                throw new DukeException(" The task number for \"" + userCommand + "\" cannot be empty.");
-            } else if (userCommand.equals(COMMAND_TODO) && !isValidDescription) {
-                throw new DukeException(" The description of \"" + userCommand + "\" cannot be empty.");
-            }
-            break;
-        case 4:
-            String requiredCommandOption = "";
-            String commandOption = inputArguments[2];
-            String commandOptionInformation = inputArguments[3];
+    private static void validateOneArgumentCommand(String[] inputArguments) throws DukeException {
+        String userCommand = inputArguments[0];
+        String description = inputArguments[1];
 
-            if (userCommand.equals(COMMAND_DEADLINE)) {
-                requiredCommandOption = REQUIRED_DEADLINE_OPTION;
-            } else if (userCommand.equals(COMMAND_EVENT)) {
-                requiredCommandOption = REQUIRED_EVENT_OPTION;
-            }
+        boolean isValidDescription = !description.isBlank();
+        if (isValidDescription) {
+            throw new DukeException(" There's no need for a description for \"" + userCommand + "\".");
+        }
+    }
 
-            isValidDescription = !description.isBlank();
-            boolean isValidOption = commandOption.equals(requiredCommandOption);
-            boolean isValidOptionInformation = !commandOptionInformation.isBlank();
+    private static void validateTwoArgumentCommand(String[] inputArguments) throws DukeException {
+        String userCommand = inputArguments[0];
+        String description = inputArguments[1];
 
-            if (!isValidDescription) {
-                throw new DukeException(" The description of \"" + userCommand + "\" cannot be empty.");
-            } else if (!isValidOption) {
-                throw new DukeException(" The \"" + requiredCommandOption + "\" option is missing for \""
-                        + userCommand + "\".");
-            } else if (!isValidOptionInformation) {
-                throw new DukeException(" The \"" + requiredCommandOption + "\" information is missing for \""
-                        + userCommand + "\".");
-            }
-            break;
-        default:
-            break;
+        boolean isValidDescription = !description.isBlank();
+        boolean isDoneOrDelete = userCommand.equals(COMMAND_DONE) || userCommand.equals(COMMAND_DELETE);
+        if (isDoneOrDelete && !isValidDescription) {
+            throw new DukeException(" The task number for \"" + userCommand + "\" cannot be empty.");
+        } else if (userCommand.equals(COMMAND_TODO) && !isValidDescription) {
+            throw new DukeException(" The description of \"" + userCommand + "\" cannot be empty.");
+        }
+    }
+
+    private static void validateFourArgumentCommand(String[] inputArguments) throws DukeException {
+        String userCommand = inputArguments[0];
+        String description = inputArguments[1];
+        String commandOption = inputArguments[2];
+        String commandOptionInformation = inputArguments[3];
+
+        String requiredCommandOption = "";
+        if (userCommand.equals(COMMAND_DEADLINE)) {
+            requiredCommandOption = REQUIRED_DEADLINE_OPTION;
+        } else if (userCommand.equals(COMMAND_EVENT)) {
+            requiredCommandOption = REQUIRED_EVENT_OPTION;
+        }
+
+        boolean isValidDescription = !description.isBlank();
+        boolean isValidOption = commandOption.equals(requiredCommandOption);
+        boolean isValidOptionInformation = !commandOptionInformation.isBlank();
+
+        if (!isValidDescription) {
+            throw new DukeException(" The description of \"" + userCommand + "\" cannot be empty.");
+        } else if (!isValidOption) {
+            throw new DukeException(" The \"" + requiredCommandOption + "\" option is missing for \""
+                    + userCommand + "\".");
+        } else if (!isValidOptionInformation) {
+            throw new DukeException(" The \"" + requiredCommandOption + "\" information is missing for \""
+                    + userCommand + "\".");
         }
     }
 }
