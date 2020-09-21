@@ -1,12 +1,18 @@
 package duke.task;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Task {
     protected String description;
     protected boolean isDone;
+
     private static int pendingTaskCount = 0;
     private static final String TICK_SYMBOL = "\u2713";
     private static final String CROSS_SYMBOL = "\u2718";
+
     protected static final String FILE_FORMAT_DELIMITER = " | ";
+    protected static final DateTimeFormatter PRINT_DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
 
     public Task(String description) {
         this.description = description;
@@ -34,6 +40,10 @@ public class Task {
 
     public static int getPendingTaskCount() {
         return pendingTaskCount;
+    }
+
+    public LocalDateTime getDateTime() {
+        return null;
     }
 
     public static void incrementPendingTaskCount() {
