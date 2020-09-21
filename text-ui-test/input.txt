@@ -22,15 +22,20 @@ deadline 123 /at 123
 event 123
 event 123 /at
 event 123 /by 123
-list
 done a
 done 0
 done 100
-list
+delete a
+delete 0
+delete 100
 bye 123
 bye 123 /at 
 list 123
 list 123 /at
 done 7
+delete 1
+delete 5
+done 3
+done 5
 list
 bye

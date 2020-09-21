@@ -1,73 +1,75 @@
 ____________________________________________________________
+ No storage file was found, let's start afresh then.
+____________________________________________________________
  Hello! I'm Duke.
  How can I help you today?
 ____________________________________________________________
 
  >> ____________________________________________________________
  Gotcha! I've added this task: 
-	[T][?] read book
+ 	[T][?] read book
  There's currently 1 task(s) in the list.
 ____________________________________________________________
 
  >> ____________________________________________________________
  Gotcha! I've added this task: 
-	[D][?] return book (by: June 6th)
+ 	[D][?] return book (by: June 6th)
  There's currently 2 task(s) in the list.
 ____________________________________________________________
 
  >> ____________________________________________________________
  Gotcha! I've added this task: 
-	[E][?] project meeting (at: Aug 6th 2-4pm)
+ 	[E][?] project meeting (at: Aug 6th 2-4pm)
  There's currently 3 task(s) in the list.
 ____________________________________________________________
 
  >> ____________________________________________________________
  Gotcha! I've added this task: 
-	[T][?] join sports club
+ 	[T][?] join sports club
  There's currently 4 task(s) in the list.
 ____________________________________________________________
 
  >> ____________________________________________________________
  Gotcha! I've added this task: 
-	[T][?] borrow book
+ 	[T][?] borrow book
  There's currently 5 task(s) in the list.
 ____________________________________________________________
 
  >> ____________________________________________________________
  Awesome!! Just 4 more task(s) to go!
-	[T][?] read book
+ 	[T][?] read book
 ____________________________________________________________
 
  >> ____________________________________________________________
  Here are the tasks in your list: 
-	1. [T][?] read book
-	2. [D][?] return book (by: June 6th)
-	3. [E][?] project meeting (at: Aug 6th 2-4pm)
-	4. [T][?] join sports club
-	5. [T][?] borrow book
+ 	1. [T][?] read book
+ 	2. [D][?] return book (by: June 6th)
+ 	3. [E][?] project meeting (at: Aug 6th 2-4pm)
+ 	4. [T][?] join sports club
+ 	5. [T][?] borrow book
 ____________________________________________________________
 
  >> ____________________________________________________________
  Gotcha! I've added this task: 
-	[D][?] return book (by: Sunday)
+ 	[D][?] return book (by: Sunday)
  There's currently 6 task(s) in the list.
 ____________________________________________________________
 
  >> ____________________________________________________________
  Gotcha! I've added this task: 
-	[E][?] project meeting (at: Mon 2-4pm)
+ 	[E][?] project meeting (at: Mon 2-4pm)
  There's currently 7 task(s) in the list.
 ____________________________________________________________
 
  >> ____________________________________________________________
  Gotcha! I've added this task: 
-	[D][?] do homework (by: no idea :-p)
+ 	[D][?] do homework (by: no idea :-p)
  There's currently 8 task(s) in the list.
 ____________________________________________________________
 
  >> ____________________________________________________________
  Remember? You have completed this task already.
-	[T][?] read book
+ 	[T][?] read book
 ____________________________________________________________
 
  >> ____________________________________________________________
@@ -80,14 +82,14 @@ ____________________________________________________________
 
  >> ____________________________________________________________
  Here are the tasks in your list: 
-	1. [T][?] read book
-	2. [D][?] return book (by: June 6th)
-	3. [E][?] project meeting (at: Aug 6th 2-4pm)
-	4. [T][?] join sports club
-	5. [T][?] borrow book
-	6. [D][?] return book (by: Sunday)
-	7. [E][?] project meeting (at: Mon 2-4pm)
-	8. [D][?] do homework (by: no idea :-p)
+ 	1. [T][?] read book
+ 	2. [D][?] return book (by: June 6th)
+ 	3. [E][?] project meeting (at: Aug 6th 2-4pm)
+ 	4. [T][?] join sports club
+ 	5. [T][?] borrow book
+ 	6. [D][?] return book (by: Sunday)
+ 	7. [E][?] project meeting (at: Mon 2-4pm)
+ 	8. [D][?] do homework (by: no idea :-p)
 ____________________________________________________________
 
  >> ____________________________________________________________
@@ -131,18 +133,6 @@ ____________________________________________________________
 ____________________________________________________________
 
  >> ____________________________________________________________
- Here are the tasks in your list: 
-	1. [T][?] read book
-	2. [D][?] return book (by: June 6th)
-	3. [E][?] project meeting (at: Aug 6th 2-4pm)
-	4. [T][?] join sports club
-	5. [T][?] borrow book
-	6. [D][?] return book (by: Sunday)
-	7. [E][?] project meeting (at: Mon 2-4pm)
-	8. [D][?] do homework (by: no idea :-p)
-____________________________________________________________
-
- >> ____________________________________________________________
  ☹ OOPS!!! "a" is not a number.
 ____________________________________________________________
 
@@ -155,15 +145,15 @@ ____________________________________________________________
 ____________________________________________________________
 
  >> ____________________________________________________________
- Here are the tasks in your list: 
-	1. [T][?] read book
-	2. [D][?] return book (by: June 6th)
-	3. [E][?] project meeting (at: Aug 6th 2-4pm)
-	4. [T][?] join sports club
-	5. [T][?] borrow book
-	6. [D][?] return book (by: Sunday)
-	7. [E][?] project meeting (at: Mon 2-4pm)
-	8. [D][?] do homework (by: no idea :-p)
+ ☹ OOPS!!! "a" is not a number.
+____________________________________________________________
+
+ >> ____________________________________________________________
+ ☹ OOPS!!! "0" is not a valid task number.
+____________________________________________________________
+
+ >> ____________________________________________________________
+ ☹ OOPS!!! "100" is not a valid task number.
 ____________________________________________________________
 
  >> ____________________________________________________________
@@ -184,19 +174,39 @@ ____________________________________________________________
 
  >> ____________________________________________________________
  Awesome!! Just 6 more task(s) to go!
-	[E][?] project meeting (at: Mon 2-4pm)
+ 	[E][?] project meeting (at: Mon 2-4pm)
+____________________________________________________________
+
+ >> ____________________________________________________________
+ Noted! I have removed this task: 
+ 	[T][?] read book
+ There's currently 7 task(s) in the list.
+____________________________________________________________
+
+ >> ____________________________________________________________
+ Noted! I have removed this task: 
+ 	[D][?] return book (by: Sunday)
+ There's currently 6 task(s) in the list.
+____________________________________________________________
+
+ >> ____________________________________________________________
+ Awesome!! Just 4 more task(s) to go!
+ 	[T][?] join sports club
+____________________________________________________________
+
+ >> ____________________________________________________________
+ Remember? You have completed this task already.
+ 	[E][?] project meeting (at: Mon 2-4pm)
 ____________________________________________________________
 
  >> ____________________________________________________________
  Here are the tasks in your list: 
-	1. [T][?] read book
-	2. [D][?] return book (by: June 6th)
-	3. [E][?] project meeting (at: Aug 6th 2-4pm)
-	4. [T][?] join sports club
-	5. [T][?] borrow book
-	6. [D][?] return book (by: Sunday)
-	7. [E][?] project meeting (at: Mon 2-4pm)
-	8. [D][?] do homework (by: no idea :-p)
+ 	1. [D][?] return book (by: June 6th)
+ 	2. [E][?] project meeting (at: Aug 6th 2-4pm)
+ 	3. [T][?] join sports club
+ 	4. [T][?] borrow book
+ 	5. [E][?] project meeting (at: Mon 2-4pm)
+ 	6. [D][?] do homework (by: no idea :-p)
 ____________________________________________________________
 
  >> ____________________________________________________________
