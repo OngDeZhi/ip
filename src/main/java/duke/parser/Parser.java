@@ -179,7 +179,7 @@ public class Parser {
         }
     }
 
-    private static void validateTwoArgumentCommand(String[] inputArguments) throws DukeException {
+    private void validateTwoArgumentCommand(String[] inputArguments) throws DukeException {
         String userCommand = inputArguments[0];
         String description = inputArguments[1];
 
@@ -192,7 +192,7 @@ public class Parser {
         }
     }
 
-    private static void validateFourArgumentCommand(String[] inputArguments) throws DukeException {
+    private void validateFourArgumentCommand(String[] inputArguments) throws DukeException {
         String userCommand = inputArguments[0];
         String description = inputArguments[1];
         String commandOption = inputArguments[2];
