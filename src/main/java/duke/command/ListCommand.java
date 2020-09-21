@@ -1,22 +1,23 @@
 package duke.command;
 
+import duke.storage.Storage;
 import duke.task.Task;
-
-import java.util.ArrayList;
+import duke.task.TaskList;
+import duke.ui.Ui;
 
 public class ListCommand extends Command {
 
     @Override
-    public void execute(ArrayList<Task> taskList) {
-        if (taskList.isEmpty()) {
-            System.out.println(" Uhh.. It's empty..");
+    public void execute(TaskList taskList, Storage storage, Ui ui) {
+        if (taskList.getSize() == 0) {
+            ui.printMessage("Uhh.. It's empty..");
             return;
         }
 
-        System.out.println(" Here are the tasks in your list: ");
-        for (int i = 0; i < taskList.size(); i++) {
-            Task task = taskList.get(i);
-            System.out.println("\t" + (i + 1) + ". " + task.toString());
+        ui.printMessage("Here are the tasks in your list: ");
+        for (int i = 0; i < taskList.getSize(); i++) {
+            Task task = taskList.getTask(i);
+            ui.printMessage("\t" + (i + 1) + ". " + task.toString());
         }
     }
 }

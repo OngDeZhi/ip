@@ -1,9 +1,10 @@
 package duke.command;
 
 import duke.exception.DukeException;
+import duke.storage.Storage;
 import duke.task.Task;
-
-import java.util.ArrayList;
+import duke.task.TaskList;
+import duke.ui.Ui;
 
 public class DeleteCommand extends Command {
     private final int deleteTaskIndex;
@@ -17,19 +18,19 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(ArrayList<Task> taskList) throws DukeException {
+    public void execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
         try {
-            Task deleteTask = taskList.get(deleteTaskIndex);
+            Task deleteTask = taskList.getTask(deleteTaskIndex);
             if (!deleteTask.getIsDone()) {
                 Task.decrementPendingTaskCount();
             }
 
-            taskList.remove(deleteTaskIndex);
-            writeToDukeStorage(taskList);
+            taskList.deleteTask(deleteTaskIndex);
+            storage.writeToStorage(taskList);
 
-            System.out.println(" Noted! I have removed this task: ");
-            System.out.println("\t" + deleteTask.toString());
-            System.out.println(" There's currently " + taskList.size() + " task(s) in the list.");
+            ui.printMessage("Noted! I have removed this task: ");
+            ui.printMessage("\t" + deleteTask.toString());
+            ui.printMessage("There's currently " + taskList.getSize() + " task(s) in the list.");
         } catch (IndexOutOfBoundsException exception) {
             throw new DukeException(" \"" + (deleteTaskIndex + 1) + "\" is not a valid task number.");
         }

@@ -10,6 +10,7 @@ public class Todo extends Task {
         return "[T]" + super.toString();
     }
 
+    @Override
     public String toFileFormatString() {
         return "T" + super.toFileFormatString();
     }

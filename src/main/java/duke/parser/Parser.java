@@ -13,7 +13,6 @@ import duke.task.Task;
 import duke.task.Todo;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Parser {
     private static final String COMMAND_BYE = "bye";
@@ -35,11 +34,7 @@ public class Parser {
     private static final int REQUIRED_DEADLINE_ARGUMENT_COUNT = 4;
     private static final int REQUIRED_EVENT_ARGUMENT_COUNT = 4;
 
-    private static final Scanner CONSOLE = new Scanner(System.in);
-    private static final String HORIZONTAL_LINE =
-            "____________________________________________________________";
-
-    public static Task convertStringToTask(String taskInString) {
+    public Task convertStringToTask(String taskInString) {
         try {
             String[] splitTaskInString = taskInString.split("\\|");
             String taskType = splitTaskInString[0].trim();
@@ -69,15 +64,12 @@ public class Parser {
         }
     }
 
-    public static Command readUserInput() throws DukeException {
-        System.out.print(System.lineSeparator() + " >> ");
-        String userInput = CONSOLE.nextLine();
-        System.out.println(HORIZONTAL_LINE);
+    public Command processUserInput(String userInput) throws DukeException {
         String[] inputArguments = parseUserInput(userInput);
         return generateCommand(inputArguments);
     }
 
-    private static String[] parseUserInput(String userInput) throws DukeException {
+    private String[] parseUserInput(String userInput) throws DukeException {
         ArrayList<String> inputArguments = new ArrayList<>();
         String[] splitInput = userInput.split(" ");
 
@@ -111,7 +103,7 @@ public class Parser {
         return inputArguments.toArray(new String[0]);
     }
 
-    private static Command generateCommand(String[] inputArguments) throws DukeException {
+    private Command generateCommand(String[] inputArguments) throws DukeException {
         String userCommand = inputArguments[0];
         String description = inputArguments[1];
         switch (userCommand) {
@@ -146,7 +138,7 @@ public class Parser {
         }
     }
 
-    private static void validateCommand(int requiredArgumentCount, String[] inputArguments) throws DukeException {
+    private void validateCommand(int requiredArgumentCount, String[] inputArguments) throws DukeException {
         validateArgumentCount(requiredArgumentCount, inputArguments);
         switch(requiredArgumentCount) {
         case 1:
@@ -163,8 +155,7 @@ public class Parser {
         }
     }
 
-    private static void validateArgumentCount(int requiredArgumentCount, String[] inputArguments)
-            throws DukeException {
+    private void validateArgumentCount(int requiredArgumentCount, String[] inputArguments) throws DukeException {
         String userCommand = inputArguments[0];
         int argumentCount = inputArguments.length;
         if (userCommand.equals(COMMAND_BYE) || userCommand.equals(COMMAND_LIST)) {
@@ -178,7 +169,7 @@ public class Parser {
         }
     }
 
-    private static void validateOneArgumentCommand(String[] inputArguments) throws DukeException {
+    private void validateOneArgumentCommand(String[] inputArguments) throws DukeException {
         String userCommand = inputArguments[0];
         String description = inputArguments[1];
 

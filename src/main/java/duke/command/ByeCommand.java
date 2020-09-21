@@ -1,14 +1,14 @@
 package duke.command;
 
-import duke.task.Task;
-
-import java.util.ArrayList;
+import duke.storage.Storage;
+import duke.task.TaskList;
+import duke.ui.Ui;
 
 public class ByeCommand extends Command {
 
     @Override
-    public void execute(ArrayList<Task> taskList) {
+    public void execute(TaskList taskList, Storage storage, Ui ui) {
         shouldExit = true;
-        System.out.println(" Bye-bye. Hope to see you again soon!");
+        ui.printMessage("Bye-bye. Hope to see you again soon!");
     }
 }

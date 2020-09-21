@@ -1,9 +1,10 @@
 package duke.command;
 
 import duke.exception.DukeException;
+import duke.storage.Storage;
 import duke.task.Task;
-
-import java.util.ArrayList;
+import duke.task.TaskList;
+import duke.ui.Ui;
 
 public class AddCommand extends Command {
     private final Task newTask;
@@ -13,13 +14,13 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public void execute(ArrayList<Task> taskList) throws DukeException {
-        taskList.add(newTask);
-        writeToDukeStorage(taskList);
+    public void execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
+        taskList.addTask(newTask);
+        storage.writeToStorage(taskList);
         Task.incrementPendingTaskCount();
 
-        System.out.println(" Gotcha! I've added this task: ");
-        System.out.println("\t" + newTask.toString());
-        System.out.println(" There's currently " + taskList.size() + " task(s) in the list.");
+        ui.printMessage("Gotcha! I've added this task: ");
+        ui.printMessage("\t" + newTask.toString());
+        ui.printMessage("There's currently " + taskList.getSize() + " task(s) in the list.");
     }
 }

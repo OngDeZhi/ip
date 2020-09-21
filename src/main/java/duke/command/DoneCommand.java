@@ -1,9 +1,10 @@
 package duke.command;
 
 import duke.exception.DukeException;
+import duke.storage.Storage;
 import duke.task.Task;
-
-import java.util.ArrayList;
+import duke.task.TaskList;
+import duke.ui.Ui;
 
 public class DoneCommand extends Command {
     private final int doneTaskIndex;
@@ -17,25 +18,25 @@ public class DoneCommand extends Command {
     }
 
     @Override
-    public void execute(ArrayList<Task> taskList) throws DukeException {
+    public void execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
         try {
-            Task doneTask = taskList.get(doneTaskIndex);
+            Task doneTask = taskList.getTask(doneTaskIndex);
             if (doneTask.getIsDone()) {
-                System.out.println(" Remember? You have completed this task already.");
-                System.out.println("\t" + taskList.get(doneTaskIndex).toString());
+                ui.printMessage("Remember? You have completed this task already.");
+                ui.printMessage("\t" + taskList.getTask(doneTaskIndex).toString());
                 return;
             }
 
-            taskList.get(doneTaskIndex).setIsDone(true);
-            writeToDukeStorage(taskList);
+            taskList.getTask(doneTaskIndex).setIsDone(true);
+            storage.writeToStorage(taskList);
 
             int pendingTaskCount = Task.getPendingTaskCount();
             if (pendingTaskCount == 0) {
-                System.out.println(" Awesome!! You are all caught up :)");
+                ui.printMessage("Awesome!! You are all caught up :)");
             } else {
-                System.out.println(" Awesome!! Just " + pendingTaskCount + " more task(s) to go!");
+                ui.printMessage("Awesome!! Just " + pendingTaskCount + " more task(s) to go!");
             }
-            System.out.println("\t" + taskList.get(doneTaskIndex).toString());
+            ui.printMessage("\t" + taskList.getTask(doneTaskIndex).toString());
         } catch (IndexOutOfBoundsException exception) {
             throw new DukeException(" \"" + (doneTaskIndex + 1) + "\" is not a valid task number.");
         }

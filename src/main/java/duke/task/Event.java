@@ -13,6 +13,7 @@ public class Event extends Task {
         return "[E]" + super.toString() + " (at: " + at + ")";
     }
 
+    @Override
     public String toFileFormatString() {
         return "E" + super.toFileFormatString() + FILE_FORMAT_DELIMITER + at;
     }
