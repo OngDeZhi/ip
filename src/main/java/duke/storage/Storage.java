@@ -43,7 +43,7 @@ public class Storage {
             fileReader.close();
 
             if (hasNullTask) {
-                ui.printErrorMessage("Duke could not load some of the saved task(s).");
+                ui.printErrorMessage(" Duke could not load some of the saved task(s).");
             } else {
                 ui.printMessage("Duke successfully loaded all of the saved task(s).");
             }
