@@ -28,7 +28,7 @@ public class Task {
     }
 
     /**
-     * Returns the description of the task.
+     * Return the description of the task.
      *
      * @return the description of the task
      */
@@ -49,7 +49,7 @@ public class Task {
     }
 
     /**
-     * Returns a boolean to indicate whether the task is done.
+     * Return a boolean to indicate whether the task is done.
      *
      * @return {@code true} if the task is done, and {@code false} if the task is not done
      */
@@ -58,7 +58,7 @@ public class Task {
     }
 
     /**
-     * Returns an integer to indicate whether the task is done.
+     * Return an integer to indicate whether the task is done.
      *
      * @return 1 if the task is done, and 0 if the task is not done
      */
@@ -67,7 +67,7 @@ public class Task {
     }
 
     /**
-     * Returns a symbol to indicate whether the task is done.
+     * Return a symbol to indicate whether the task is done.
      *
      * @return a tick symbol if the task is done or a cross symbol if the task is not done
      */
@@ -85,7 +85,7 @@ public class Task {
     }
 
     /**
-     * Returns {@code null} if it has no LocalDateTime object, it is to
+     * Return {@code null} if it has no LocalDateTime object, it is to
      * be overridden by Deadline and Event.
      *
      * @return {@code null}
@@ -109,7 +109,7 @@ public class Task {
     }
 
     /**
-     * Returns a string representation of this {@code Task} object.
+     * Return a string representation of this {@code Task} object.
      *
      * @return a string representation of this {@code Task} object
      */
@@ -118,7 +118,7 @@ public class Task {
     }
 
     /**
-     * Returns a string representation of this {@code Task} object formatted for saving in a file.
+     * Return a string representation of this {@code Task} object formatted for saving in a file.
      *
      * @return a string representation of this {@code Task} object formatted for saving in a file
      */

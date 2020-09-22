@@ -324,7 +324,7 @@ public class Parser {
     }
 
     /**
-     * Returns a LocalDateTime object that is parsed from the user input.
+     * Return a LocalDateTime object that is parsed from the user input.
      *
      * @param commandDateTime the raw input entered by the user for the datetime argument
      * @return a LocalDateTime object representing the date and time
@@ -340,7 +340,7 @@ public class Parser {
     }
 
     /**
-     * Returns a LocalDate object that is parsed from the user input.
+     * Return a LocalDate object that is parsed from the user input.
      *
      * @param commandDate the raw input entered by the user for the date argument
      * @return a LocalDate object representing the date

@@ -3,7 +3,7 @@ package duke.task;
 import java.time.LocalDateTime;
 
 /**
- * Represents an Event that will occur at a specified date and time.
+ * Represents a Event, a task that will occur at a specified date and time.
  */
 public class Event extends Task {
     protected LocalDateTime atDateTime;
@@ -21,7 +21,7 @@ public class Event extends Task {
     }
 
     /**
-     * Returns a LocalDateTime object that represents the date and time a Event will occur.
+     * Return a LocalDateTime object that represents the date and time a Event will occur.
      *
      * @return a LocalDateTime object
      */
@@ -31,7 +31,7 @@ public class Event extends Task {
     }
 
     /**
-     * Returns a string representation of this {@code Event} object.
+     * Return a string representation of this {@code Event} object.
      *
      * @return a string representation of this {@code Event} object
      */
@@ -41,7 +41,7 @@ public class Event extends Task {
     }
 
     /**
-     * Returns a string representation of this {@code Event} object formatted for saving in a file.
+     * Return a string representation of this {@code Event} object formatted for saving in a file.
      *
      * @return a string representation of this {@code Event} object formatted for saving in a file
      */

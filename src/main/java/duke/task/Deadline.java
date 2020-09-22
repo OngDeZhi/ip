@@ -20,7 +20,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns a LocalDateTime object that represents the date and time a Deadline is due.
+     * Return a LocalDateTime object that represents the date and time a Deadline is due.
      *
      * @return a LocalDateTime object
      */
@@ -30,7 +30,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns a string representation of this {@code Deadline} object.
+     * Return a string representation of this {@code Deadline} object.
      *
      * @return a string representation of this {@code Deadline} object
      */
@@ -40,7 +40,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns a string representation of this {@code Deadline} object formatted for saving in a file.
+     * Return a string representation of this {@code Deadline} object formatted for saving in a file.
      *
      * @return a string representation of this {@code Deadline} object formatted for saving in a file
      */

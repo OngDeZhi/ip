@@ -16,7 +16,7 @@ public class TaskList {
     }
 
     /**
-     * Returns the number of tasks currently in the list.
+     * Return the number of tasks currently in the list.
      *
      * @return the number of tasks currently in the list
      */
@@ -44,7 +44,7 @@ public class TaskList {
     }
 
     /**
-     * Adds a new task ({@code Deadline}, {@code Event}, {@code Todo}) to the list.
+     * Add a new task ({@code Deadline}, {@code Event}, {@code Todo}) to the list.
      *
      * @param newTask the specified new task to be added to the list
      */
