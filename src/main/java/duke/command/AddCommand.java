@@ -6,13 +6,29 @@ import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Represents the command to add a new task to the list.
+ */
 public class AddCommand extends Command {
     private final Task newTask;
 
+    /**
+     * Create a new AddCommand object with the specified task to be added.
+     *
+     * @param newTask the specified new task to be added
+     */
     public AddCommand(Task newTask) {
         this.newTask = newTask;
     }
 
+    /**
+     * Add a new task to the task list and write the updated task list to the storage file.
+     *
+     * @param taskList the task list
+     * @param storage the storage file for storing tasks
+     * @param ui the user interface to output information during command execution
+     * @throws DukeException if Duke encounters error while writing to the file
+     */
     @Override
     public void execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
         taskList.addTask(newTask);

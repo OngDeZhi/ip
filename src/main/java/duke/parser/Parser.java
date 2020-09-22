@@ -20,6 +20,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
+/**
+ * Represents the class to handle the parsing and validation of user input.
+ */
 public class Parser {
     private static final String COMMAND_BYE = "bye";
     private static final String COMMAND_LIST = "list";
@@ -47,6 +50,14 @@ public class Parser {
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
+    /**
+     * Convert the string representation of the Task object read from the storage file
+     * into a Task object which will be returned.
+     *
+     * @param taskInString the string representation of the Task object
+     * @return a Task object generated from the its string representation, or
+     *         {@code null} if the string representation is corrupted or invalid
+     */
     public Task convertStringToTask(String taskInString) {
         try {
             String[] splitTaskInString = taskInString.split("\\|");
@@ -79,11 +90,34 @@ public class Parser {
         }
     }
 
+    /**
+     * Process the user input and return the appropriate Command object.
+     *
+     * @param userInput the raw input entered by the user
+     * @return a Command object representing the command to execute
+     * @throws DukeException if the user provided an invalid input such that it cannot be used
+     *                       to generate a Command object
+     */
     public Command processUserInput(String userInput) throws DukeException {
         String[] inputArguments = parseUserInput(userInput);
         return generateCommand(inputArguments);
     }
 
+    /**
+     *  Parse the user input and return a String array containing the arguments retrieved
+     *  from the user input, where the arguments for the last 3 index are only present in
+     *  the array if they were supplied by the user:
+     *  <ul>
+     *      <li>{@code String[0]} contain the command.</li>
+     *      <li>{@code String[1]} contain the description.</li>
+     *      <li>{@code String[2]} contain the command option (e.g. "/by" or "/at").</li>
+     *      <li>{@code String[3]} contain the date and time information.</li>
+     *  </ul>
+     *
+     * @param userInput the raw input entered by the user
+     * @return the list of arguments retrieved from the user input
+     * @throws DukeException if the user has provided an input that cannot be parsed
+     */
     private String[] parseUserInput(String userInput) throws DukeException {
         ArrayList<String> inputArguments = new ArrayList<>();
         String[] splitInput = userInput.split(" ");
@@ -118,6 +152,13 @@ public class Parser {
         return inputArguments.toArray(new String[0]);
     }
 
+    /**
+     * Generate and return the Command object based on the argument list.
+     *
+     * @param inputArguments the argument list generated from the user input
+     * @return a Command object representing the command to execute
+     * @throws DukeException if the command failed the validation process or is not recognized by Duke
+     */
     private Command generateCommand(String[] inputArguments) throws DukeException {
         String userCommand = inputArguments[0];
         String description = inputArguments[1];
@@ -160,6 +201,15 @@ public class Parser {
         }
     }
 
+    /**
+     * Validate the command based on the required argument count and the argument list.
+     *
+     * @param requiredArgumentCount the number of arguments required for the command
+     * @param inputArguments the argument list generated from the user input
+     * @throws DukeException if either the command has insufficient arguments or it has at least one
+     *                       invalid argument (e.g. blanks or provided a String that cannot be parsed
+     *                       into a Integer)
+     */
     private void validateCommand(int requiredArgumentCount, String[] inputArguments) throws DukeException {
         validateArgumentCount(requiredArgumentCount, inputArguments);
         switch(requiredArgumentCount) {
@@ -177,6 +227,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Ensure that the command has meet the required argument count.
+     *
+     * @param requiredArgumentCount the number of arguments required for the command
+     * @param inputArguments the argument list generated from the user input
+     * @throws DukeException if the user has provided too many or too little arguments for the command
+     */
     private void validateArgumentCount(int requiredArgumentCount, String[] inputArguments) throws DukeException {
         String userCommand = inputArguments[0];
         int argumentCount = inputArguments.length;
@@ -191,6 +248,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Validate commands that require only one argument
+     *
+     * @param inputArguments the argument list generated from the user input
+     * @throws DukeException if the user has provided a description when it is not needed
+     */
     private void validateOneArgumentCommand(String[] inputArguments) throws DukeException {
         String userCommand = inputArguments[0];
         String description = inputArguments[1];
@@ -201,6 +264,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Validate commands that require two arguments.
+     *
+     * @param inputArguments the argument list generated from the user input
+     * @throws DukeException if the user provided empty description or task number for the command
+     */
     private void validateTwoArgumentCommand(String[] inputArguments) throws DukeException {
         String userCommand = inputArguments[0];
         String description = inputArguments[1];
@@ -218,6 +287,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Validate commands that require four arguments.
+     *
+     * @param inputArguments the argument list generated from the user input
+     * @throws DukeException if the user did not provide any description, date time information, or
+     *                       used the wrong command option (e.g. "/at" for deadline instead of "/by")
+     */
     private void validateFourArgumentCommand(String[] inputArguments) throws DukeException {
         String userCommand = inputArguments[0];
         String description = inputArguments[1];
@@ -246,6 +322,14 @@ public class Parser {
         }
     }
 
+    /**
+     * Return a LocalDateTime object that is parsed from the user input.
+     *
+     * @param commandDateTime the raw input entered by the user for the datetime argument
+     * @return a LocalDateTime object representing the date and time
+     * @throws DukeException if the user provided a date and time input that is not in
+     *                       the format: YYYY-MM-DD HH:MM
+     */
     private LocalDateTime parseDateTimeInput(String commandDateTime) throws DukeException {
         try {
             return LocalDateTime.parse(commandDateTime, DATE_TIME_FORMAT);
@@ -254,6 +338,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Return a LocalDate object that is parsed from the user input.
+     *
+     * @param commandDate the raw input entered by the user for the date argument
+     * @return a LocalDate object representing the date
+     * @throws DukeException if the user provided a date input that is not in the format: YYYY-MM-DD
+     */
     private LocalDate parseDateInput(String commandDate) throws DukeException {
         try {
             return LocalDate.parse(commandDate, DATE_FORMAT);
