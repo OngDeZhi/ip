@@ -5,7 +5,6 @@ import java.util.Scanner;
 /**
  * Represents the class to handle all input and output of Duke.
  */
-
 public class Ui {
     private static final Scanner CONSOLE = new Scanner(System.in);
     private static final String HORIZONTAL_LINE =
@@ -38,9 +37,9 @@ public class Ui {
     }
 
     /**
-      * Prints the input prompt and prompt the user for input.
+     * Prints the input prompt and prompt the user for input.
      *
-      * @return the raw input entered by the user
+     * @return the raw input entered by the user
      */
     public String readUserInput() {
         System.out.print(System.lineSeparator() + " >> ");

@@ -12,7 +12,6 @@ import java.io.File;
 /**
  * Represents the entry point of the task tracking application.
  */
-
 public class Duke {
     private static final String FILE_DIRECTORY = "data" + File.separator;
     private static final String FILE_PATH = "data" + File.separator + "duke.txt";

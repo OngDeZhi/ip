@@ -5,7 +5,6 @@ import java.util.ArrayList;
 /**
  * Represents the class to store all the tasks entered by the user.
  */
-
 public class TaskList {
     private final ArrayList<Task> taskList;
 

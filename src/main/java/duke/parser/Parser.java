@@ -24,7 +24,6 @@ import java.util.ArrayList;
  * Represents the class to handle the parsing and validation of user input
  * and returns a Command object.
  */
-
 public class Parser {
     private static final String COMMAND_BYE = "bye";
     private static final String COMMAND_LIST = "list";

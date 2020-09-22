@@ -8,7 +8,6 @@ import duke.ui.Ui;
 /**
  * Abstract class to represent the various command types.
  */
-
 public abstract class Command {
     protected static boolean shouldExit = false;
 
