@@ -1,15 +1,21 @@
 package duke.task;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Represents the class to contain the description and done status of a task.
  */
 public class Task {
     protected String description;
     protected boolean isDone;
+
     private static int pendingTaskCount = 0;
     private static final String TICK_SYMBOL = "\u2713";
     private static final String CROSS_SYMBOL = "\u2718";
+
     protected static final String FILE_FORMAT_DELIMITER = " | ";
+    protected static final DateTimeFormatter PRINT_DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
 
     /**
      * Create a new Task object with the specified description and done status set to {@code false}.
@@ -67,6 +73,16 @@ public class Task {
      */
     public static int getPendingTaskCount() {
         return pendingTaskCount;
+    }
+
+    /**
+     * Returns {@code null} if it has no LocalDateTime object, it is to
+     * be overridden by Deadline and Event.
+     *
+     * @return {@code null}
+     */
+    public LocalDateTime getDateTime() {
+        return null;
     }
 
     /**
