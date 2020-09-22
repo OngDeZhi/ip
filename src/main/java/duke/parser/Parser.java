@@ -6,6 +6,7 @@ import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.DoneCommand;
 import duke.command.FindCommand;
+import duke.command.DueCommand;
 import duke.command.ListCommand;
 import duke.exception.DukeException;
 import duke.task.Deadline;
@@ -13,6 +14,10 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 public class Parser {
@@ -20,6 +25,7 @@ public class Parser {
     private static final String COMMAND_LIST = "list";
     private static final String COMMAND_DONE = "done";
     private static final String COMMAND_DELETE = "delete";
+    private static final String COMMAND_DUE = "due";
     private static final String COMMAND_FIND = "find";
     private static final String COMMAND_TODO = "todo";
     private static final String COMMAND_DEADLINE = "deadline";
@@ -32,10 +38,14 @@ public class Parser {
     private static final int REQUIRED_LIST_ARGUMENT_COUNT = 1;
     private static final int REQUIRED_DONE_ARGUMENT_COUNT = 2;
     private static final int REQUIRED_DELETE_ARGUMENT_COUNT = 2;
+    private static final int REQUIRED_DUE_ARGUMENT_COUNT = 2;
     private static final int REQUIRED_FIND_ARGUMENT_COUNT = 2;
     private static final int REQUIRED_TODO_ARGUMENT_COUNT = 2;
     private static final int REQUIRED_DEADLINE_ARGUMENT_COUNT = 4;
     private static final int REQUIRED_EVENT_ARGUMENT_COUNT = 4;
+
+    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     public Task convertStringToTask(String taskInString) {
         try {
@@ -50,19 +60,21 @@ public class Parser {
                 newTodo.setIsDone(isDone);
                 return newTodo;
             case "D":
-                String byInformation = splitTaskInString[3].trim();
-                Deadline newDeadline = new Deadline(description, byInformation);
+                String byDateTimeString = splitTaskInString[3].trim().replace("T", " ");
+                LocalDateTime byDateTime = parseDateTimeInput(byDateTimeString);
+                Deadline newDeadline = new Deadline(description, byDateTime);
                 newDeadline.setIsDone(isDone);
                 return newDeadline;
             case "E":
-                String atInformation = splitTaskInString[3].trim();
-                Event newEvent = new Event(description, atInformation);
+                String atDateTimeString = splitTaskInString[3].trim().replace("T", " ");
+                LocalDateTime atDateTime = parseDateTimeInput(atDateTimeString);
+                Event newEvent = new Event(description, atDateTime);
                 newEvent.setIsDone(isDone);
                 return newEvent;
             default:
                 return null;
             }
-        } catch (ArrayIndexOutOfBoundsException exception) {
+        } catch (ArrayIndexOutOfBoundsException | DukeException exception) {
             return null;
         }
     }
@@ -122,6 +134,10 @@ public class Parser {
         case COMMAND_DELETE:
             validateCommand(REQUIRED_DELETE_ARGUMENT_COUNT, inputArguments);
             return new DeleteCommand(description);
+        case COMMAND_DUE:
+            validateArgumentCount(REQUIRED_DUE_ARGUMENT_COUNT, inputArguments);
+            LocalDate dueDate = parseDateInput(description);
+            return new DueCommand(dueDate);
         case COMMAND_FIND:
             validateCommand(REQUIRED_FIND_ARGUMENT_COUNT, inputArguments);
             return new FindCommand(description);
@@ -131,13 +147,13 @@ public class Parser {
             return new AddCommand(newTodo);
         case COMMAND_DEADLINE:
             validateCommand(REQUIRED_DEADLINE_ARGUMENT_COUNT, inputArguments);
-            String byInformation = inputArguments[3];
-            Deadline newDeadline = new Deadline(description, byInformation);
+            LocalDateTime byDateTime = parseDateTimeInput(inputArguments[3]);
+            Deadline newDeadline = new Deadline(description, byDateTime);
             return new AddCommand(newDeadline);
         case COMMAND_EVENT:
             validateCommand(REQUIRED_EVENT_ARGUMENT_COUNT, inputArguments);
-            String atInformation = inputArguments[3];
-            Event newEvent = new Event(description, atInformation);
+            LocalDateTime atDateTime = parseDateTimeInput(inputArguments[3]);
+            Event newEvent = new Event(description, atDateTime);
             return new AddCommand(newEvent);
         default:
             throw new DukeException(" Command \"" + userCommand + "\" is not recognized by Duke :(");
@@ -195,6 +211,8 @@ public class Parser {
             throw new DukeException(" The task number for \"" + userCommand + "\" cannot be empty.");
         } else if (userCommand.equals(COMMAND_TODO) && !isValidDescription) {
             throw new DukeException(" The description of \"" + userCommand + "\" cannot be empty.");
+        } else if (userCommand.equals(COMMAND_DUE) && !isValidDescription) {
+            throw new DukeException(" The due date of \"" + userCommand + "\" cannot be empty.");
         } else if (userCommand.equals(COMMAND_FIND) && !isValidDescription) {
             throw new DukeException(" The keyword for \"" + userCommand + "\" cannot be empty.");
         }
@@ -204,7 +222,7 @@ public class Parser {
         String userCommand = inputArguments[0];
         String description = inputArguments[1];
         String commandOption = inputArguments[2];
-        String commandOptionInformation = inputArguments[3];
+        String commandDateTime = inputArguments[3];
 
         String requiredCommandOption = "";
         if (userCommand.equals(COMMAND_DEADLINE)) {
@@ -215,16 +233,32 @@ public class Parser {
 
         boolean isValidDescription = !description.isBlank();
         boolean isValidOption = commandOption.equals(requiredCommandOption);
-        boolean isValidOptionInformation = !commandOptionInformation.isBlank();
+        boolean isValidDateTime = !commandDateTime.isBlank();
 
         if (!isValidDescription) {
             throw new DukeException(" The description of \"" + userCommand + "\" cannot be empty.");
         } else if (!isValidOption) {
             throw new DukeException(" The \"" + requiredCommandOption + "\" option is missing for \""
                     + userCommand + "\".");
-        } else if (!isValidOptionInformation) {
+        } else if (!isValidDateTime) {
             throw new DukeException(" The \"" + requiredCommandOption + "\" information is missing for \""
                     + userCommand + "\".");
+        }
+    }
+
+    private LocalDateTime parseDateTimeInput(String commandDateTime) throws DukeException {
+        try {
+            return LocalDateTime.parse(commandDateTime, DATE_TIME_FORMAT);
+        } catch (DateTimeParseException exception) {
+            throw new DukeException(" Ensure date and time format is: YYYY-MM-DD HH:MM.");
+        }
+    }
+
+    private LocalDate parseDateInput(String commandDate) throws DukeException {
+        try {
+            return LocalDate.parse(commandDate, DATE_FORMAT);
+        } catch (DateTimeParseException exception) {
+            throw new DukeException(" Ensure date format is: YYYY-MM-DD.");
         }
     }
 }
