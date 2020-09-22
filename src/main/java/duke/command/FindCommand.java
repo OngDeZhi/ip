@@ -13,7 +13,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
+    public void execute(TaskList taskList, Storage storage, Ui ui) {
         int findTaskCount = 0;
         for (Task task : taskList.getTaskList()) {
             String description = task.getDescription();
