@@ -21,8 +21,7 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 /**
- * Represents the class to handle the parsing and validation of user input
- * and returns a Command object.
+ * Represents the class to handle the parsing and validation of user input.
  */
 public class Parser {
     private static final String COMMAND_BYE = "bye";
@@ -53,7 +52,7 @@ public class Parser {
 
     /**
      * Convert the string representation of the Task object read from the storage file
-     * into a Task object to be returned.
+     * into a Task object which will be returned.
      *
      * @param taskInString the string representation of the Task object
      * @return a Task object generated from the its string representation, or
@@ -94,7 +93,7 @@ public class Parser {
     /**
      * Process the user input and return the appropriate Command object.
      *
-     * @param userInput the input supplied by the user
+     * @param userInput the raw input entered by the user
      * @return a Command object representing the command to execute
      * @throws DukeException if the user provided an invalid input such that it cannot be used
      *                       to generate a Command object
@@ -106,7 +105,7 @@ public class Parser {
 
     /**
      *  Parse the user input and return a String array containing the arguments retrieved
-     *  from the user input, where the argument for the last 3 index are only present in
+     *  from the user input, where the arguments for the last 3 index are only present in
      *  the array if they were supplied by the user:
      *  <ul>
      *      <li>{@code String[0]} contain the command.</li>

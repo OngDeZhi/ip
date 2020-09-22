@@ -8,7 +8,7 @@ import duke.ui.Ui;
 import java.time.LocalDate;
 
 /**
- * Represents the command to search for deadline and events due on a specific day.
+ * Represents the command to search for deadlines and events due on a specific day.
  */
 public class DueCommand extends Command {
     private final LocalDate dueDate;

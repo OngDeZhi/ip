@@ -32,7 +32,7 @@ public class Duke {
     }
 
     /**
-     * Runs Duke until the <code>bye</code> command is entered by the user.
+     * Runs Duke until the bye command is entered by the user.
      */
     public void run() {
         ui.printWelcomeMessage();

@@ -15,9 +15,9 @@ public class Todo extends Task {
     }
 
     /**
-     * Return a string representation of this {@code Todo} object.
+     * Return a string representation of this Todo object.
      *
-     * @return a string representation of this {@code Todo} object
+     * @return a string representation of this Todo object
      */
     @Override
     public String toString() {
@@ -25,9 +25,9 @@ public class Todo extends Task {
     }
 
     /**
-     * Return a string representation of this {@code Todo} object formatted for saving in a file.
+     * Return a string representation of this Todo object that is formatted for saving in a file.
      *
-     * @return a string representation of this {@code Todo} object formatted for saving in a file
+     * @return a string representation of this Todo object that is formatted for saving in a file
      */
     @Override
     public String toFileFormatString() {

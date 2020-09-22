@@ -11,7 +11,7 @@ public class Ui {
             "____________________________________________________________";
 
     /**
-     * Prints a single horizontal line for formatting purposes.
+     * Prints a single horizontal line.
      */
     public void printHorizontalLine() {
         System.out.println(HORIZONTAL_LINE);
@@ -37,7 +37,7 @@ public class Ui {
     }
 
     /**
-     * Prints the input prompt and prompt the user for input.
+     * Prints the input prompt and also to prompt the user for input.
      *
      * @return the raw input entered by the user
      */

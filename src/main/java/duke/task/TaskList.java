@@ -25,7 +25,7 @@ public class TaskList {
     }
 
     /**
-     * Retrieve the task specified by the task number.
+     * Retrieve the task specified by the task index.
      *
      * @param taskIndex the specified index of the task to be retrieved from the list
      * @return the task that has been retrieved from the list
@@ -44,7 +44,7 @@ public class TaskList {
     }
 
     /**
-     * Add a new task ({@code Deadline}, {@code Event}, {@code Todo}) to the list.
+     * Add a new task (Deadline, Event, Todo) to the list.
      *
      * @param newTask the specified new task to be added to the list
      */

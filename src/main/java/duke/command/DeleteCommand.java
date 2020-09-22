@@ -33,7 +33,8 @@ public class DeleteCommand extends Command {
      * @param taskList the task list
      * @param storage the storage file for storing tasks
      * @param ui the user interface to output information during command execution
-     * @throws DukeException if the user provided a task number that is not found in the list
+     * @throws DukeException if the user provided a task number that is not found in the list,
+     *                       or there is an error while writing to the storage file
      */
     @Override
     public void execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {

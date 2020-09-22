@@ -31,9 +31,9 @@ public class Event extends Task {
     }
 
     /**
-     * Return a string representation of this {@code Event} object.
+     * Return a string representation of this Event object.
      *
-     * @return a string representation of this {@code Event} object
+     * @return a string representation of this Event object
      */
     @Override
     public String toString() {
@@ -41,9 +41,9 @@ public class Event extends Task {
     }
 
     /**
-     * Return a string representation of this {@code Event} object formatted for saving in a file.
+     * Return a string representation of this Event object that is formatted for saving in a file.
      *
-     * @return a string representation of this {@code Event} object formatted for saving in a file
+     * @return a string representation of this Event object that is formatted for saving in a file
      */
     @Override
     public String toFileFormatString() {

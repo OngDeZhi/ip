@@ -86,7 +86,7 @@ public class Task {
 
     /**
      * Return {@code null} if it has no LocalDateTime object, it is to
-     * be overridden by Deadline and Event.
+     * be overridden by the class Deadline and Event.
      *
      * @return {@code null}
      */
@@ -109,18 +109,18 @@ public class Task {
     }
 
     /**
-     * Return a string representation of this {@code Task} object.
+     * Return a string representation of this Task object.
      *
-     * @return a string representation of this {@code Task} object
+     * @return a string representation of this Task object
      */
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
     }
 
     /**
-     * Return a string representation of this {@code Task} object formatted for saving in a file.
+     * Return a string representation of this Task object that is formatted for saving in a file.
      *
-     * @return a string representation of this {@code Task} object formatted for saving in a file
+     * @return a string representation of this Task object that is formatted for saving in a file
      */
     public String toFileFormatString() {
         return FILE_FORMAT_DELIMITER + getIsDoneInInteger() + FILE_FORMAT_DELIMITER + description;

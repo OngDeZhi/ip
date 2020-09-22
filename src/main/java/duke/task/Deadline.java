@@ -30,9 +30,9 @@ public class Deadline extends Task {
     }
 
     /**
-     * Return a string representation of this {@code Deadline} object.
+     * Return a string representation of this Deadline object.
      *
-     * @return a string representation of this {@code Deadline} object
+     * @return a string representation of this Deadline object
      */
     @Override
     public String toString() {
@@ -40,9 +40,9 @@ public class Deadline extends Task {
     }
 
     /**
-     * Return a string representation of this {@code Deadline} object formatted for saving in a file.
+     * Return a string representation of this Deadline object that is formatted for saving in a file.
      *
-     * @return a string representation of this {@code Deadline} object formatted for saving in a file
+     * @return a string representation of this Deadline object that is formatted for saving in a file
      */
     @Override
     public String toFileFormatString() {
