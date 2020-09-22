@@ -32,14 +32,16 @@ public class FindCommand extends Command {
         int findTaskCount = 0;
         for (Task task : taskList.getTaskList()) {
             String description = task.getDescription();
-            if (description.contains(keyword)) {
-                if (findTaskCount == 0) {
-                    ui.printMessage("Here are the matching tasks in your list: ");
-                }
-
-                findTaskCount++;
-                ui.printMessage("\t" + findTaskCount + ". " + task.toString());
+            if (!description.contains(keyword)) {
+                continue;
             }
+
+            if (findTaskCount == 0) {
+                ui.printMessage("Here are the matching tasks in your list: ");
+            }
+
+            findTaskCount++;
+            ui.printMessage("\t" + findTaskCount + ". " + task.toString());
         }
 
         if (findTaskCount == 0) {

@@ -38,14 +38,16 @@ public class DueCommand extends Command {
             }
 
             LocalDate taskDueDate = task.getDateTime().toLocalDate();
-            if (taskDueDate.equals(dueDate)) {
-                if (dueTaskCount == 0) {
-                    ui.printMessage("Here is a list of tasks due for that day: ");
-                }
-
-                dueTaskCount++;
-                ui.printMessage("\t" + dueTaskCount + ". " + task.toString());
+            if (!taskDueDate.equals(dueDate)) {
+                continue;
             }
+
+            if (dueTaskCount == 0) {
+                ui.printMessage("Here is a list of tasks due for that day: ");
+            }
+
+            dueTaskCount++;
+            ui.printMessage("\t" + dueTaskCount + ". " + task.toString());
         }
 
         if (dueTaskCount == 0) {
