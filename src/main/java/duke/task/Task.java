@@ -19,6 +19,10 @@ public class Task {
         this.isDone = false;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public void setIsDone(boolean isDone) {
         this.isDone = isDone;
         if (isDone) {

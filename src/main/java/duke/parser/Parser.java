@@ -5,6 +5,7 @@ import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.DoneCommand;
+import duke.command.FindCommand;
 import duke.command.DueCommand;
 import duke.command.ListCommand;
 import duke.exception.DukeException;
@@ -25,6 +26,7 @@ public class Parser {
     private static final String COMMAND_DONE = "done";
     private static final String COMMAND_DELETE = "delete";
     private static final String COMMAND_DUE = "due";
+    private static final String COMMAND_FIND = "find";
     private static final String COMMAND_TODO = "todo";
     private static final String COMMAND_DEADLINE = "deadline";
     private static final String COMMAND_EVENT = "event";
@@ -37,6 +39,7 @@ public class Parser {
     private static final int REQUIRED_DONE_ARGUMENT_COUNT = 2;
     private static final int REQUIRED_DELETE_ARGUMENT_COUNT = 2;
     private static final int REQUIRED_DUE_ARGUMENT_COUNT = 2;
+    private static final int REQUIRED_FIND_ARGUMENT_COUNT = 2;
     private static final int REQUIRED_TODO_ARGUMENT_COUNT = 2;
     private static final int REQUIRED_DEADLINE_ARGUMENT_COUNT = 4;
     private static final int REQUIRED_EVENT_ARGUMENT_COUNT = 4;
@@ -135,6 +138,9 @@ public class Parser {
             validateArgumentCount(REQUIRED_DUE_ARGUMENT_COUNT, inputArguments);
             LocalDate dueDate = parseDateInput(description);
             return new DueCommand(dueDate);
+        case COMMAND_FIND:
+            validateCommand(REQUIRED_FIND_ARGUMENT_COUNT, inputArguments);
+            return new FindCommand(description);
         case COMMAND_TODO:
             validateCommand(REQUIRED_TODO_ARGUMENT_COUNT, inputArguments);
             Todo newTodo = new Todo(description);
@@ -207,6 +213,8 @@ public class Parser {
             throw new DukeException(" The description of \"" + userCommand + "\" cannot be empty.");
         } else if (userCommand.equals(COMMAND_DUE) && !isValidDescription) {
             throw new DukeException(" The due date of \"" + userCommand + "\" cannot be empty.");
+        } else if (userCommand.equals(COMMAND_FIND) && !isValidDescription) {
+            throw new DukeException(" The keyword for \"" + userCommand + "\" cannot be empty.");
         }
     }
 
