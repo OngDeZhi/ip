@@ -28,6 +28,15 @@ public class Task {
     }
 
     /**
+     * Returns the description of the task.
+     *
+     * @return the description of the task
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
      * Set the done status of a task.
      *
      * @param isDone {@code true} if the task is done, and {@code false} if the task is not done

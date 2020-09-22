@@ -14,6 +14,7 @@ list
 done
 delete
 due
+find
 todo
 deadline
 event
@@ -40,5 +41,7 @@ done 3
 done 5
 due 2020-09-22
 due 2020-08-05
+find book
+find meeting
 list
 bye
