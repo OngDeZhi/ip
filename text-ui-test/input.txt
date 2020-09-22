@@ -1,27 +1,28 @@
 todo read book
-deadline return book /by June 6th
-event project meeting /at Aug 6th 2-4pm
+deadline return book /by 2020-06-06 12:30
+event project meeting /at 2020-08-05 13:30
 todo join sports club
 todo borrow book
 done 1
 list
-deadline return book /by Sunday
-event project meeting /at Mon 2-4pm
-deadline do homework /by no idea :-p
+deadline return book /by 2020-09-22 10:00
+event project meeting /at 2020-09-22 15:30
 done 1
 done2
 blah
 list
 done
+delete
+due
 todo
 deadline
 event
 deadline 123
 deadline 123 /by
-deadline 123 /at 123
+deadline 123 /at 2020-09-22 20:30
 event 123
 event 123 /at
-event 123 /by 123
+event 123 /by 2020-09-21 10:45
 done a
 done 0
 done 100
@@ -34,8 +35,10 @@ list 123
 list 123 /at
 done 7
 delete 1
-delete 5
+delete 4
 done 3
 done 5
+due 2020-09-22
+due 2020-08-05
 list
 bye

@@ -13,13 +13,13 @@ ____________________________________________________________
 
  >> ____________________________________________________________
  Gotcha! I've added this task: 
- 	[D][?] return book (by: June 6th)
+ 	[D][?] return book (by: Jun 06 2020 12:30)
  There's currently 2 task(s) in the list.
 ____________________________________________________________
 
  >> ____________________________________________________________
  Gotcha! I've added this task: 
- 	[E][?] project meeting (at: Aug 6th 2-4pm)
+ 	[E][?] project meeting (at: Aug 05 2020 13:30)
  There's currently 3 task(s) in the list.
 ____________________________________________________________
 
@@ -43,28 +43,22 @@ ____________________________________________________________
  >> ____________________________________________________________
  Here are the tasks in your list: 
  	1. [T][?] read book
- 	2. [D][?] return book (by: June 6th)
- 	3. [E][?] project meeting (at: Aug 6th 2-4pm)
+ 	2. [D][?] return book (by: Jun 06 2020 12:30)
+ 	3. [E][?] project meeting (at: Aug 05 2020 13:30)
  	4. [T][?] join sports club
  	5. [T][?] borrow book
 ____________________________________________________________
 
  >> ____________________________________________________________
  Gotcha! I've added this task: 
- 	[D][?] return book (by: Sunday)
+ 	[D][?] return book (by: Sep 22 2020 10:00)
  There's currently 6 task(s) in the list.
 ____________________________________________________________
 
  >> ____________________________________________________________
  Gotcha! I've added this task: 
- 	[E][?] project meeting (at: Mon 2-4pm)
+ 	[E][?] project meeting (at: Sep 22 2020 15:30)
  There's currently 7 task(s) in the list.
-____________________________________________________________
-
- >> ____________________________________________________________
- Gotcha! I've added this task: 
- 	[D][?] do homework (by: no idea :-p)
- There's currently 8 task(s) in the list.
 ____________________________________________________________
 
  >> ____________________________________________________________
@@ -83,17 +77,24 @@ ____________________________________________________________
  >> ____________________________________________________________
  Here are the tasks in your list: 
  	1. [T][?] read book
- 	2. [D][?] return book (by: June 6th)
- 	3. [E][?] project meeting (at: Aug 6th 2-4pm)
+ 	2. [D][?] return book (by: Jun 06 2020 12:30)
+ 	3. [E][?] project meeting (at: Aug 05 2020 13:30)
  	4. [T][?] join sports club
  	5. [T][?] borrow book
- 	6. [D][?] return book (by: Sunday)
- 	7. [E][?] project meeting (at: Mon 2-4pm)
- 	8. [D][?] do homework (by: no idea :-p)
+ 	6. [D][?] return book (by: Sep 22 2020 10:00)
+ 	7. [E][?] project meeting (at: Sep 22 2020 15:30)
 ____________________________________________________________
 
  >> ____________________________________________________________
  ☹ OOPS!!! The task number for "done" cannot be empty.
+____________________________________________________________
+
+ >> ____________________________________________________________
+ ☹ OOPS!!! The task number for "delete" cannot be empty.
+____________________________________________________________
+
+ >> ____________________________________________________________
+ ☹ OOPS!!! Ensure date format is: YYYY-MM-DD.
 ____________________________________________________________
 
  >> ____________________________________________________________
@@ -173,40 +174,50 @@ ____________________________________________________________
 ____________________________________________________________
 
  >> ____________________________________________________________
- Awesome!! Just 6 more task(s) to go!
- 	[E][?] project meeting (at: Mon 2-4pm)
+ Awesome!! Just 5 more task(s) to go!
+ 	[E][?] project meeting (at: Sep 22 2020 15:30)
 ____________________________________________________________
 
  >> ____________________________________________________________
  Noted! I have removed this task: 
  	[T][?] read book
- There's currently 7 task(s) in the list.
-____________________________________________________________
-
- >> ____________________________________________________________
- Noted! I have removed this task: 
- 	[D][?] return book (by: Sunday)
  There's currently 6 task(s) in the list.
 ____________________________________________________________
 
  >> ____________________________________________________________
- Awesome!! Just 4 more task(s) to go!
+ Noted! I have removed this task: 
+ 	[T][?] borrow book
+ There's currently 5 task(s) in the list.
+____________________________________________________________
+
+ >> ____________________________________________________________
+ Awesome!! Just 3 more task(s) to go!
  	[T][?] join sports club
 ____________________________________________________________
 
  >> ____________________________________________________________
  Remember? You have completed this task already.
- 	[E][?] project meeting (at: Mon 2-4pm)
+ 	[E][?] project meeting (at: Sep 22 2020 15:30)
+____________________________________________________________
+
+ >> ____________________________________________________________
+ Here is a list of tasks due for that day: 
+ 	1. [D][?] return book (by: Sep 22 2020 10:00)
+ 	2. [E][?] project meeting (at: Sep 22 2020 15:30)
+____________________________________________________________
+
+ >> ____________________________________________________________
+ Here is a list of tasks due for that day: 
+ 	1. [E][?] project meeting (at: Aug 05 2020 13:30)
 ____________________________________________________________
 
  >> ____________________________________________________________
  Here are the tasks in your list: 
- 	1. [D][?] return book (by: June 6th)
- 	2. [E][?] project meeting (at: Aug 6th 2-4pm)
+ 	1. [D][?] return book (by: Jun 06 2020 12:30)
+ 	2. [E][?] project meeting (at: Aug 05 2020 13:30)
  	3. [T][?] join sports club
- 	4. [T][?] borrow book
- 	5. [E][?] project meeting (at: Mon 2-4pm)
- 	6. [D][?] do homework (by: no idea :-p)
+ 	4. [D][?] return book (by: Sep 22 2020 10:00)
+ 	5. [E][?] project meeting (at: Sep 22 2020 15:30)
 ____________________________________________________________
 
  >> ____________________________________________________________
