@@ -6,9 +6,19 @@ import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Represents the command to mark a task as done in the list.
+ */
 public class DoneCommand extends Command {
     private final int doneTaskIndex;
 
+    /**
+     * Create a new DoneCommand object with the specified task index, which will
+     * be validated first.
+     *
+     * @param doneTaskIndexString the specified index of the task to be mark as done
+     * @throws DukeException if the user provided a string that cannot be parsed into a integer
+     */
     public DoneCommand(String doneTaskIndexString) throws DukeException {
         try {
             doneTaskIndex = Integer.parseInt(doneTaskIndexString) - 1;
@@ -17,6 +27,14 @@ public class DoneCommand extends Command {
         }
     }
 
+    /**
+     * Mark the task as done and write the updated task list to the storage file.
+     *
+     * @param taskList the task list
+     * @param storage the storage file for storing tasks
+     * @param ui the user interface to output information during command execution
+     * @throws DukeException if the user provided a task number that is not found in the list
+     */
     @Override
     public void execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
         try {

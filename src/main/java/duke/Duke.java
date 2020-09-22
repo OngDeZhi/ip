@@ -9,6 +9,10 @@ import duke.ui.Ui;
 
 import java.io.File;
 
+/**
+ * Represents the entry point of the task tracking application.
+ */
+
 public class Duke {
     private static final String FILE_DIRECTORY = "data" + File.separator;
     private static final String FILE_PATH = "data" + File.separator + "duke.txt";
@@ -18,6 +22,9 @@ public class Duke {
     private final Storage storage;
     private final TaskList taskList;
 
+    /**
+     * Create a new Duke object and load the saved task(s) from the storage file.
+     */
     public Duke() {
         ui = new Ui();
         parser = new Parser();
@@ -25,6 +32,9 @@ public class Duke {
         taskList = storage.readFromStorage(parser, ui);
     }
 
+    /**
+     * Runs Duke until the <code>bye</code> command is entered by the user.
+     */
     public void run() {
         ui.printWelcomeMessage();
 
