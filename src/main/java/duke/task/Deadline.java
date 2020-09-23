@@ -9,7 +9,7 @@ public class Deadline extends Task {
     protected LocalDateTime byDateTime;
 
     /**
-     * Create a new Deadline object with the specified description and date and time information.
+     * Creates a new Deadline object with the specified description and date and time information.
      *
      * @param description the specified description
      * @param byDateTime the specified date and time information
@@ -20,7 +20,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Return a LocalDateTime object that represents the date and time a Deadline is due.
+     * Returns a LocalDateTime object that represents the date and time a Deadline is due.
      *
      * @return a LocalDateTime object
      */
@@ -30,7 +30,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Return a string representation of this Deadline object.
+     * Returns a string representation of this Deadline object.
      *
      * @return a string representation of this Deadline object
      */
@@ -40,7 +40,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Return a string representation of this Deadline object that is formatted for saving in a file.
+     * Returns a string representation of this Deadline object that is formatted for saving in a file.
      *
      * @return a string representation of this Deadline object that is formatted for saving in a file
      */

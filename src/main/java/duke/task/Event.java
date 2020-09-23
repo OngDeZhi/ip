@@ -9,7 +9,7 @@ public class Event extends Task {
     protected LocalDateTime atDateTime;
 
     /**
-     * Create a new Event object with the specified description and date and time information.
+     * Creates a new Event object with the specified description and date and time information.
      *
      * @param description the specified description
      * @param atDateTime the specified date and time information
@@ -21,7 +21,7 @@ public class Event extends Task {
     }
 
     /**
-     * Return a LocalDateTime object that represents the date and time a Event will occur.
+     * Returns a LocalDateTime object that represents the date and time a Event will occur.
      *
      * @return a LocalDateTime object
      */
@@ -31,7 +31,7 @@ public class Event extends Task {
     }
 
     /**
-     * Return a string representation of this Event object.
+     * Returns a string representation of this Event object.
      *
      * @return a string representation of this Event object
      */
@@ -41,7 +41,7 @@ public class Event extends Task {
     }
 
     /**
-     * Return a string representation of this Event object that is formatted for saving in a file.
+     * Returns a string representation of this Event object that is formatted for saving in a file.
      *
      * @return a string representation of this Event object that is formatted for saving in a file
      */

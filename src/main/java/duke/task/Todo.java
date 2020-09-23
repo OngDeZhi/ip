@@ -6,7 +6,7 @@ package duke.task;
 public class Todo extends Task {
 
     /**
-     * Create a new Todo object with the specified description.
+     * Creates a new Todo object with the specified description.
      *
      * @param description the specified description
      */
@@ -15,7 +15,7 @@ public class Todo extends Task {
     }
 
     /**
-     * Return a string representation of this Todo object.
+     * Returns a string representation of this Todo object.
      *
      * @return a string representation of this Todo object
      */
@@ -25,7 +25,7 @@ public class Todo extends Task {
     }
 
     /**
-     * Return a string representation of this Todo object that is formatted for saving in a file.
+     * Returns a string representation of this Todo object that is formatted for saving in a file.
      *
      * @return a string representation of this Todo object that is formatted for saving in a file
      */

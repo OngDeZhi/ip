@@ -13,7 +13,7 @@ public class DoneCommand extends Command {
     private final int doneTaskIndex;
 
     /**
-     * Create a new DoneCommand object with the specified task index, which will
+     * Creates a new DoneCommand object with the specified task index, which will
      * be validated first.
      *
      * @param doneTaskIndexString the specified index of the task to be mark as done
@@ -28,7 +28,7 @@ public class DoneCommand extends Command {
     }
 
     /**
-     * Mark the task as done and write the updated task list to the storage file.
+     * Marks the task as done and write the updated task list to the storage file.
      *
      * @param taskList the task list
      * @param storage the storage file for storing tasks

@@ -13,7 +13,7 @@ public class DeleteCommand extends Command {
     private final int deleteTaskIndex;
 
     /**
-     * Create a new DeleteCommand object with the specified task index, which will
+     * Creates a new DeleteCommand object with the specified task index, which will
      * be validated first.
      *
      * @param deleteTaskIndexString the specified index of the task to be deleted
@@ -28,7 +28,7 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Delete the task and write the updated task list to the storage file.
+     * Deletes the task and write the updated task list to the storage file.
      *
      * @param taskList the task list
      * @param storage the storage file for storing tasks

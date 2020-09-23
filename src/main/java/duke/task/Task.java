@@ -18,7 +18,7 @@ public class Task {
     protected static final DateTimeFormatter PRINT_DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
 
     /**
-     * Create a new Task object with the specified description and done status set to {@code false}.
+     * Creates a new Task object with the specified description and done status set to {@code false}.
      *
      * @param description the specified description
      */
@@ -28,7 +28,7 @@ public class Task {
     }
 
     /**
-     * Return the description of the task.
+     * Returns the description of the task.
      *
      * @return the description of the task
      */
@@ -37,7 +37,7 @@ public class Task {
     }
 
     /**
-     * Set the done status of a task.
+     * Sets the done status of a task.
      *
      * @param isDone {@code true} if the task is done, and {@code false} if the task is not done
      */
@@ -49,7 +49,7 @@ public class Task {
     }
 
     /**
-     * Return a boolean to indicate whether the task is done.
+     * Returns a boolean to indicate whether the task is done.
      *
      * @return {@code true} if the task is done, and {@code false} if the task is not done
      */
@@ -58,7 +58,7 @@ public class Task {
     }
 
     /**
-     * Return an integer to indicate whether the task is done.
+     * Returns an integer to indicate whether the task is done.
      *
      * @return 1 if the task is done, and 0 if the task is not done
      */
@@ -67,7 +67,7 @@ public class Task {
     }
 
     /**
-     * Return a symbol to indicate whether the task is done.
+     * Returns a symbol to indicate whether the task is done.
      *
      * @return a tick symbol if the task is done or a cross symbol if the task is not done
      */
@@ -76,7 +76,7 @@ public class Task {
     }
 
     /**
-     * Return the number of pending tasks in the list currently.
+     * Returns the number of pending tasks in the list currently.
      *
      * @return the number of pending tasks in the list currently
      */
@@ -85,7 +85,7 @@ public class Task {
     }
 
     /**
-     * Return {@code null} if it has no LocalDateTime object, it is to
+     * Returns {@code null} if it has no LocalDateTime object, it is to
      * be overridden by the class Deadline and Event.
      *
      * @return {@code null}
@@ -95,21 +95,21 @@ public class Task {
     }
 
     /**
-     * Increase the number of pending task by one.
+     * Increases the number of pending task by one.
      */
     public static void incrementPendingTaskCount() {
         pendingTaskCount++;
     }
 
     /**
-     * Decrease the number of pending task by one.
+     * Decreases the number of pending task by one.
      */
     public static void decrementPendingTaskCount() {
         pendingTaskCount--;
     }
 
     /**
-     * Return a string representation of this Task object.
+     * Returns a string representation of this Task object.
      *
      * @return a string representation of this Task object
      */
@@ -118,7 +118,7 @@ public class Task {
     }
 
     /**
-     * Return a string representation of this Task object that is formatted for saving in a file.
+     * Returns a string representation of this Task object that is formatted for saving in a file.
      *
      * @return a string representation of this Task object that is formatted for saving in a file
      */
