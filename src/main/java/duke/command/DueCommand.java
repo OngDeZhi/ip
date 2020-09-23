@@ -14,7 +14,7 @@ public class DueCommand extends Command {
     private final LocalDate dueDate;
 
     /**
-     * Create a new DueCommand object with the specified due date.
+     * Creates a new DueCommand object with the specified due date.
      *
      * @param dueDate the specified due date
      */
@@ -23,7 +23,7 @@ public class DueCommand extends Command {
     }
 
     /**
-     * List all deadlines and events that are due on that specific day.
+     * Lists all deadlines and events that are due on that specific day.
      *
      * @param taskList the task list
      * @param storage the storage file for storing tasks

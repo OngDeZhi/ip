@@ -6,7 +6,7 @@ package duke.exception;
 public class DukeException extends Exception {
 
     /**
-     * Create a new DukeException object with the specified exception message.
+     * Creates a new DukeException object with the specified exception message.
      *
      * @param exceptionMessage the specified exception message.
      */

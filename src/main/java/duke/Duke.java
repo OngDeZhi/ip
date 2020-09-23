@@ -22,7 +22,7 @@ public class Duke {
     private final TaskList taskList;
 
     /**
-     * Create a new Duke object and load the saved task(s) from the storage file.
+     * Creates a new Duke object and load the saved task(s) from the storage file.
      */
     public Duke() {
         ui = new Ui();

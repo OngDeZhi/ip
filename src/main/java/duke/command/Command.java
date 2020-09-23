@@ -12,7 +12,7 @@ public abstract class Command {
     protected static boolean shouldExit = false;
 
     /**
-     * Check if Duke should exit.
+     * Checks if Duke should exit.
      *
      * @return {@code true} if Duke should exit, and {@code false} otherwise
      */

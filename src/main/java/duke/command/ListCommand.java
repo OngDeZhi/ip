@@ -11,7 +11,7 @@ import duke.ui.Ui;
 public class ListCommand extends Command {
 
     /**
-     * List all tasks that are currently in the list.
+     * Lists all tasks that are currently in the list.
      *
      * @param taskList the task list
      * @param storage the storage file for storing tasks

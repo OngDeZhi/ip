@@ -13,7 +13,7 @@ public class AddCommand extends Command {
     private final Task newTask;
 
     /**
-     * Create a new AddCommand object with the specified task to be added.
+     * Creates a new AddCommand object with the specified task to be added.
      *
      * @param newTask the specified new task to be added
      */
@@ -22,7 +22,7 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Add a new task to the task list and write the updated task list to the storage file.
+     * Adds a new task to the task list and write the updated task list to the storage file.
      *
      * @param taskList the task list
      * @param storage the storage file for storing tasks

@@ -20,7 +20,7 @@ public class Storage {
     private final String fileDirectory;
 
     /**
-     * Create a new Storage object with the specified path to the
+     * Creates a new Storage object with the specified path to the
      * storage file and storage directory.
      *
      * @param filePath the specified path to the storage file
@@ -32,7 +32,7 @@ public class Storage {
     }
 
     /**
-     * Read from the storage file for the saved task(s).
+     * Reads from the storage file for the saved task(s).
      *
      * @param parser the parser converts the strings read from the file into Task objects
      * @param ui the user interface to output information to the user after reading
@@ -73,7 +73,7 @@ public class Storage {
     }
 
     /**
-     * Write to the storage file with the current task list.
+     * Writes to the storage file with the current task list.
      *
      * @param taskList the tasks that are currently in the list
      * @throws DukeException if Duke encounters an error while writing to the file

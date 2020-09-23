@@ -10,7 +10,7 @@ import duke.ui.Ui;
 public class ByeCommand extends Command {
 
     /**
-     * Set {@code shouldExit} to {@code true} and prints the goodbye message to the user.
+     * Prints the goodbye message to the user and also set {@code shouldExit} to {@code true}.
      *
      * @param taskList the task list
      * @param storage the storage file for storing tasks
