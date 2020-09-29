@@ -23,10 +23,10 @@ such as a Todo, Deadline, or Event.
 * [5. Command Summary](#5-command-summary)
 
 ## 1. Quick Start
-1. Ensure you have Java 11 installed on your computer.
-2. Download the latest `ip.jar`
-3. Place it in a directory that you are comfortable with.
-4. Run Duke with the command: `java -jar ip.jar`
+1. Ensure you have JDK 11 installed.
+2. Download the latest `ip.jar`.
+3. Place the jar file in a directory that you are comfortable with.
+4. Run Duke in a command prompt using the command: `java -jar ip.jar`.
 5. Refer to [Usage](#3-usage) or [Command Summary](#5-command-summary) for details on using Duke.
 
 ## 2. Features
@@ -35,6 +35,7 @@ User can:
 * Add a task (Todo, Deadline, or Event) to the list.
 * Remove a task from the list.
 * Mark a task as done in the list.
+* List all tasks in the list.
 
 #### 2.2 Task Searching
 User can search for their desired tasks using a keyword or due date.
@@ -203,7 +204,7 @@ A: They can be found in the current directory where you run Duke, at `data/duke.
 Q: Why does it say "Duke could not load some of the saved task(s)."?
 
 A: It is likely that you have an entry that cannot be processed by Duke, 
-e.g. missing information or incorrect format.
+e.g. missing information or incorrect task entry format in the file.
 
 ## 5. Command Summary
 
