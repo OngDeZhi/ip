@@ -38,7 +38,6 @@ public class Storage {
      * @param ui the user interface to output information to the user after reading
      * @return the task list read from the storage file
      */
-
     public TaskList readFromStorage(Parser parser, Ui ui) {
         ui.printHorizontalLine();
         boolean hasNullTask = false;
