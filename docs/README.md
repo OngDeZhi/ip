@@ -4,37 +4,47 @@ Duke is a Personal Assistant Chat Bot that helps a person to keep track of vario
 such as a Todo, Deadline, or Event.
 
 ## Table of Contents
-* [Features](#features)
-    * [Task Management](#task-management)
-    * [Task Searching](#task-searching)
-    * [Persistent Data](#persistent-data)
-* [Usage](#usage)
-    * [Add a Todo task: `todo`](#add-a-todo-task-todo)
-    * [Add a Deadline task: `deadline`](#add-a-deadline-task-deadline)
-    * [Add an Event task: `event`](#add-an-event-task-event)
-    * [Mark a task a done: `done`](#mark-a-task-a-done-done)
-    * [Delete a task: `delete`](#delete-a-task-delete)
-    * [List tasks that are due: `due`](#list-tasks-that-are-due-due)
-    * [Find task by the keyword: `find`](#find-task-by-the-keyword-find)
-    * [List all tasks: `list`](#list-all-tasks-list)
-    * [Exit the program: `bye`](#exit-the-program-bye)
+* [1. Quick Start](#1-quick-start)
+* [2. Features](#2-features)
+    * [2.1 Task Management](#21-task-management)
+    * [2.2 Task Searching](#22-task-searching)
+    * [2.3 Persistent Data](#23-persistent-data)
+* [3. Usage](#3-usage)
+    * [3.1 Add a Todo task: `todo`](#31-add-a-todo-task-todo)
+    * [3.2 Add a Deadline task: `deadline`](#32-add-a-deadline-task-deadline)
+    * [3.3 Add an Event task: `event`](#33-add-an-event-task-event)
+    * [3.4 Mark a task as done: `done`](#34-mark-a-task-as-done-done)
+    * [3.5 Delete a task: `delete`](#35-delete-a-task-delete)
+    * [3.6 List tasks that are due: `due`](#36-list-tasks-that-are-due-due)
+    * [3.7 Find task by the keyword: `find`](#37-find-task-by-the-keyword-find)
+    * [3.8 List all tasks: `list`](#38-list-all-tasks-list)
+    * [3.9 Exit the program: `bye`](#39-exit-the-program-bye)
+* [4. FAQ](#4-faq)
+* [5. Command Summary](#5-command-summary)
 
-## Features
-#### Task Management
+## 1. Quick Start
+1. Ensure you have Java 11 installed on your computer.
+2. Download the latest `ip.jar`
+3. Place it in a directory that you are comfortable with.
+4. Run Duke with the command: `java -jar ip.jar`
+5. Refer to [Usage](#3-usage) or [Command Summary](#5-command-summary) for details on using Duke.
+
+## 2. Features
+#### 2.1 Task Management
 User can: 
 * Add a task (Todo, Deadline, or Event) to the list.
 * Remove a task from the list.
 * Mark a task as done in the list.
 
-#### Task Searching
+#### 2.2 Task Searching
 User can search for their desired tasks using a keyword or due date.
 
-#### Persistent Data
+#### 2.3 Persistent Data
 All changes made on the task list by the user will be saved to a local storage file automatically, and 
 when Duke launches, the tasks saved in the local storage file will be loaded automatically.
 
-## Usage
-#### Add a Todo task: `todo`
+## 3. Usage
+#### 3.1 Add a Todo task: `todo`
 
 This will add a Todo task to the task list.
 
@@ -51,7 +61,7 @@ There's currently 1 task(s) in the list.
 
 <br/>
 
-#### Add a Deadline task: `deadline`
+#### 3.2 Add a Deadline task: `deadline`
 
 This will add a Deadline task to the task list.
 
@@ -68,7 +78,7 @@ There's currently 2 task(s) in the list.
 
 <br/>
 
-#### Add an Event task: `event`
+#### 3.3 Add an Event task: `event`
 
 This will add an Event task to the task list.
 
@@ -85,7 +95,7 @@ There's currently 3 task(s) in the list.
 
 <br/>
 
-#### Mark a task a done: `done`
+#### 3.4 Mark a task as done: `done`
 
 This will mark a task as done in the task list.
 
@@ -101,7 +111,7 @@ Awesome!! Just 2 more task(s) to go!
 
 <br/>
 
-#### Delete a task: `delete`
+#### 3.5 Delete a task: `delete`
 
 This will delete a task from the task list.
 
@@ -118,7 +128,7 @@ There's currently 2 task(s) in the list.
 
 <br/>
 
-#### List tasks that are due: `due`
+#### 3.6 List tasks that are due: `due`
 
 This will list all tasks that are due on a specific day.
 
@@ -135,7 +145,7 @@ Here is a list of tasks due for that day:
 
 <br/>
 
-#### Find task by the keyword: `find`
+#### 3.7 Find task by the keyword: `find`
 
 This will find and list all tasks whose description contains the specified keyword.
 
@@ -153,7 +163,7 @@ Here are the matching tasks in your list:
 
 <br/>
 
-#### List all tasks: `list`
+#### 3.8 List all tasks: `list`
 
 This will list all tasks that the user has added to the list.
 
@@ -172,7 +182,7 @@ Here are the tasks in your list:
 
 <br/>
 
-#### Exit the program: `bye`
+#### 3.9 Exit the program: `bye`
 
 This will exit the program.
 
@@ -184,3 +194,27 @@ Expected outcome:
 ```
 Bye-bye. Hope to see you again soon!
 ```
+
+## 4. FAQ
+Q: Where are my tasks stored?
+
+A: They can be found in the current directory where you run Duke, at `data/duke.txt`.
+
+Q: Why does it say "Duke could not load some of the saved task(s)."?
+
+A: It is likely that you have an entry that cannot be processed by Duke, 
+e.g. missing information or incorrect format.
+
+## 5. Command Summary
+
+|Feature                               |Command                                               |
+|---                                   |---                                                   |
+| Add a Todo task                      |`todo <TASK_DESCRIPTION>`                             |
+| Add a Deadline task                  |`deadline <TASK_DESCRIPTION> /by <YYYY-MM-DD HH:MM>`  |
+| Add an Event task                    |`event <TASK_DESCRIPTION> /at <YYYY-MM-DD HH:MM>`     |
+| Mark a task as done                  |`done <TASK_INDEX>`                                   |
+| Delete a task                        |`delete <TASK_INDEX>`                                 |
+| Find a task by keyword               |`find <KEYWORD>`                                      |
+| Find task(s) due on a specific date  |`due <YYYY-MM-DD>`                                    |
+| List all tasks                       |`list`                                                |
+| Exit                                 |`bye`                                                 |
