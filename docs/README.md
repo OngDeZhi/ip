@@ -204,7 +204,7 @@ A: They can be found in the current directory where you run Duke, at `data/duke.
 Q: Why does it say "Duke could not load some of the saved task(s)."?
 
 A: It is likely that you have an entry that cannot be processed by Duke, 
-e.g. missing information or incorrect task entry format in the file.
+e.g. missing task information or incorrect task entry format in the file.
 
 ## 5. Command Summary
 
