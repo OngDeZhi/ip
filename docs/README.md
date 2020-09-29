@@ -15,8 +15,8 @@ such as a Todo, Deadline, or Event.
     * [3.3 Add an Event task: `event`](#33-add-an-event-task-event)
     * [3.4 Mark a task as done: `done`](#34-mark-a-task-as-done-done)
     * [3.5 Delete a task: `delete`](#35-delete-a-task-delete)
-    * [3.6 List tasks that are due: `due`](#36-list-tasks-that-are-due-due)
-    * [3.7 Find task by the keyword: `find`](#37-find-task-by-the-keyword-find)
+    * [3.6 Find task(s) due on a specific date: `due`](#36-find-tasks-due-on-a-specific-date-due)
+    * [3.7 Find task(s) by the keyword: `find`](#37-find-tasks-by-the-keyword-find)
     * [3.8 List all tasks: `list`](#38-list-all-tasks-list)
     * [3.9 Exit the program: `bye`](#39-exit-the-program-bye)
 * [4. FAQ](#4-faq)
@@ -129,9 +129,9 @@ There's currently 2 task(s) in the list.
 
 <br/>
 
-#### 3.6 List tasks that are due: `due`
+#### 3.6 Find task(s) due on a specific date: `due`
 
-This will list all tasks that are due on a specific day.
+This will list all tasks that are due on a specific date.
 
 Format: `due <YYYY-MM-DD>`
 
@@ -146,7 +146,7 @@ Here is a list of tasks due for that day:
 
 <br/>
 
-#### 3.7 Find task by the keyword: `find`
+#### 3.7 Find task(s) by the keyword: `find`
 
 This will find and list all tasks whose description contains the specified keyword.
 
