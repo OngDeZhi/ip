@@ -26,7 +26,7 @@ such as a Todo, Deadline, or Event.
 1. Ensure you have JDK 11 installed.
 2. Download the latest `ip.jar`.
 3. Place the jar file in a directory that you are comfortable with.
-4. Run Duke in a command prompt using the command: `java -jar ip.jar`.
+4. Run Duke in a command window using the command: `java -jar ip.jar`.
 5. Refer to [Usage](#3-usage) or [Command Summary](#5-command-summary) for details on using Duke.
 
 ## 2. Features
